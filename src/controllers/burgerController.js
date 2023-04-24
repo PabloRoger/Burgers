@@ -1,4 +1,4 @@
-const burgersService = require("../services/burgersService");
+const burgersService = require("../services/burgerService");
 
 const getAllBurgers = (req, res) => {
     const allBurgers = burgersService.getAllBurgers();
