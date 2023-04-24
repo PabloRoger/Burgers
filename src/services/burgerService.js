@@ -17,3 +17,11 @@ const updateBurger = () =>{
 const deleteBurger = () =>{
   return;
 }
+
+module.exports = {
+  getAllBurgers,
+  getBurgerById,
+  createBurger,
+  updateBurger,
+  deleteBurger
+}
