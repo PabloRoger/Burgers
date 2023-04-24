@@ -1,21 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const burgersController = require("../../controllers/burgerController");
 
 router
-    .get("/", (req, res) => {
-        res.send("Get all the burgers");
-    })
-    .get("/:id", (req, res) => {
-        res.send(`Get a burger with id: ${req.params.id}`);
-    })
-    .post("/:id", (req, res) => {
-        res.send(`Create a new burger with id: ${req.params.id}`);
-    })
-    .put("/:id", (req, res) => {
-        res.send(`Update a burger with id: ${req.params.id}`);
-    })
-    .delete("/:id", (req, res) => {
-        res.send(`Delete a burger with id: ${req.params.id}`);
-    });
+    .get("/", burgersController.getAllBurgers)
+    .get("/:id", burgersController.getBurgerById)
+    .post("/:id", burgersController.createBurger)
+    .patch("/:id", burgersController.updateBurger)
+    .delete("/:id", burgersController.deleteBurger);
 
 module.exports = router;
