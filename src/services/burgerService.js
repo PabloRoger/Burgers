@@ -10,8 +10,11 @@ const getBurgerById = (burgerId, callback) => {
   return oneBurger;
 }
 
-const createBurger = () =>{
-  return;
+
+/*TODO - fix this function*/
+const createBurger = (burgerData, callback) =>{
+  const newBurger = burger.createBurger(burgerData, callback);
+  return newBurger;
 }
 
 const updateBurger = () =>{

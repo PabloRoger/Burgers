@@ -12,9 +12,20 @@ const getBurgerById = (req, res) => {
     });
 };
 
+
+
+/*TODO - fix this function*/
 const createBurger = (req, res) => {
-    const newBurger = burgersService.createBurger(req.body);
-    res.send(`Create a new burger with id: ${req.params.id}`);
+    const burgerData = req.body;
+
+    burgersService.createBurger(burgerData, (error, result) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Error creating burger');
+    } else {
+      res.status(201).send(`Created a new burger with id: ${result.insertId}`);
+    }
+  });
 };
 
 const updateBurger = (req, res) => {
