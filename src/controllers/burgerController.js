@@ -7,8 +7,9 @@ const getAllBurgers = (req, res) => {
   };
 
 const getBurgerById = (req, res) => {
-    const oneBurger = burgersService.getBurgerById(req.params.id);
-    res.send(`Get a burger with id: ${req.params.id}`);
+    burgersService.getBurgerById(req.params.id, (error, result) => {
+        error ? res.status(500).send(error) : res.send(result);
+    });
 };
 
 const createBurger = (req, res) => {

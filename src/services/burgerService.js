@@ -5,8 +5,9 @@ const getAllBurgers = (callback) => {
   return allBurgers;
 }
 
-const getBurgerById = () =>{
-  return;
+const getBurgerById = (burgerId, callback) => {
+  const oneBurger = burger.getBurgerById(burgerId, callback);
+  return oneBurger;
 }
 
 const createBurger = () =>{
