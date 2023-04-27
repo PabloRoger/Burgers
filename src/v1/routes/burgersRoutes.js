@@ -3,10 +3,10 @@ const router = express.Router();
 const burgersController = require("../../controllers/burgerController");
 
 router
-    .get("/", burgersController.getAllBurgers)
-    .get("/:id", burgersController.getBurgerById)
-    .post("/:id", burgersController.createBurger)
-    .patch("/:id", burgersController.updateBurger)
-    .delete("/:id", burgersController.deleteBurger);
+    .get("/burgers", burgersController.getAllBurgers)
+    .get("/burger/:id", burgersController.getBurgerById)
+    .post("/create", burgersController.createBurger)
+    .patch("/update/:id", burgersController.updateBurger)
+    .delete("/delete/:id", burgersController.deleteBurger);
 
 module.exports = router;
