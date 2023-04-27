@@ -1,5 +1,8 @@
-const getAllBurgers = () =>{
-  return;
+const burger = require("../database/burger")
+
+const getAllBurgers = (callback) => {
+  const allBurgers = burger.getAllBurgers(callback);
+  return allBurgers;
 }
 
 const getBurgerById = () =>{

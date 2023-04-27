@@ -1,9 +1,10 @@
 const burgersService = require("../services/burgerService");
 
 const getAllBurgers = (req, res) => {
-    const allBurgers = burgersService.getAllBurgers();
-    res.send("Get all the burgers");
-};
+    burgersService.getAllBurgers((error, results) => {
+      error ? res.status(500).send(error) : res.send(results)
+    });
+  };
 
 const getBurgerById = (req, res) => {
     const oneBurger = burgersService.getBurgerById(req.params.id);
