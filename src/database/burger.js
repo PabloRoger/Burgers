@@ -27,8 +27,18 @@ function createBurger(burgerData, callback) {
   });
 }
 
+function updateBurger(burgerId, changes, callback) {
+  const query = 'UPDATE Burger SET ? WHERE burger_id = ?';
+
+  connection.query(query, [ changes, burgerId ], (error, result) => {
+    // MANAGE ERROR
+    error ? callback(error, null) : callback(null, result);
+  });
+}
+
 module.exports = {
   getAllBurgers,
   getBurgerById,
-  createBurger
+  createBurger,
+  updateBurger
 };

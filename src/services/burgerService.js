@@ -20,12 +20,18 @@ const createBurger = (burgerData, callback) =>{
     const createdBurger = burger.createBurger(burgerToInsert, callback);
     return createdBurger;
   } catch (error) {
-    throw new error;
+    throw error;
   }
 }
 
-const updateBurger = () =>{
-  return;
+const updateBurger = (burgerId, changes, callback) =>{
+  try {
+    const updatedBurger = burger.updateBurger(burgerId, changes, callback);
+    return updatedBurger;
+  } catch (error) {
+    console.log(error);
+    throw { status: 500, message: 'Error updating burger: ' + error.message }
+  }
 }
 
 const deleteBurger = () =>{

@@ -63,8 +63,23 @@ const createBurger = (req, res) => {
 };
 
 const updateBurger = (req, res) => {
-    const updatedBurger = burgersService.updateBurger(req.params.id, req.body);
-    res.send(`Update a burger with id: ${req.params.id}`);
+  const { body } = req;
+  const burger_id = req.params.id;
+
+  if( !burger_id ){
+    res.status(400).send("Missing required information");
+    return;
+  }
+
+  burgersService.updateBurger(burger_id, body, (error, result) => {
+    if (error) {
+      console.log(error)
+      res.status(500).json({ error: error.message })
+      return;
+    }
+
+    res.json(result);
+  });
 };
 
 const deleteBurger = (req, res) => {
