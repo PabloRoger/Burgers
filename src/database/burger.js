@@ -36,9 +36,20 @@ function updateBurger(burgerId, changes, callback) {
   });
 }
 
+function deleteBurger(burgerId, callback) {
+  const query = 'DELETE FROM Burger WHERE burger_id = ?';
+
+
+  connection.query(query, burgerId, (error, result) => {
+    // MANAGE ERROR
+    error ? callback(error, null) : callback(null, result);
+  });
+};
+
 module.exports = {
   getAllBurgers,
   getBurgerById,
   createBurger,
-  updateBurger
+  updateBurger,
+  deleteBurger
 };

@@ -2,11 +2,16 @@ const burgersService = require("../services/burgerService");
 
 const getAllBurgers = (req, res) => {
   const getAllBurgers = burgersService.getAllBurgers((error, result) => {
-    error ? res.status(500).send(error) : res.send(result);
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
   });
 
   return getAllBurgers;
-  };
+};
 
 const getBurgerById = (req, res) => {
   const { id } = req.params;
@@ -17,7 +22,12 @@ const getBurgerById = (req, res) => {
   }
 
   const getOneBurger = burgersService.getBurgerById(id, (error, result) => {
-      error ? res.status(500).send(error) : res.send(result);
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
   });
 
   return getOneBurger;
@@ -56,7 +66,12 @@ const createBurger = (req, res) => {
   };
 
   const createdBurger = burgersService.createBurger(newBurger, (error, result) => {
-    error ? res.status(500).send(error) : res.send(result);
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
   });
 
   return createdBurger;
@@ -71,20 +86,36 @@ const updateBurger = (req, res) => {
     return;
   }
 
-  burgersService.updateBurger(burger_id, body, (error, result) => {
+  const updatedBurger = burgersService.updateBurger(burger_id, body, (error, result) => {
     if (error) {
-      console.log(error)
-      res.status(500).json({ error: error.message })
+      res.status(500).send({ error: error.message })
       return;
     }
 
-    res.json(result);
+    res.send(result);
   });
+
+  return updatedBurger;
 };
 
 const deleteBurger = (req, res) => {
-    burgersService.deleteBurger(req.params.id);
-    res.send(`Delete a burger with id: ${req.params.id}`);
+  const burger_id = req.params.id;
+
+  if (!burger_id) {
+    res.status(400).send("Missing required information");
+    return;
+  }
+
+  const deletedBurger = burgersService.deleteBurger(burger_id, (error, result) => {
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
+  });
+
+  return deletedBurger;
 };
 
 module.exports = {

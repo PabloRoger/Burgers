@@ -20,7 +20,7 @@ const createBurger = (burgerData, callback) =>{
     const createdBurger = burger.createBurger(burgerToInsert, callback);
     return createdBurger;
   } catch (error) {
-    throw error;
+    throw { status: 500, message: 'Error creating burger: ' + error.message }
   }
 }
 
@@ -29,13 +29,16 @@ const updateBurger = (burgerId, changes, callback) =>{
     const updatedBurger = burger.updateBurger(burgerId, changes, callback);
     return updatedBurger;
   } catch (error) {
-    console.log(error);
     throw { status: 500, message: 'Error updating burger: ' + error.message }
   }
 }
 
-const deleteBurger = () =>{
-  return;
+const deleteBurger = (burgerId, callback) =>{
+  try {
+    burger.deleteBurger(burgerId, callback);
+  } catch (error) {
+    throw { status: 500, message: 'Error deleting burger: ' + error.message }
+  }
 }
 
 module.exports = {
