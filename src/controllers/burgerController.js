@@ -55,13 +55,11 @@ const createBurger = (req, res) => {
     picture: body.picture
   };
 
-  try {
-    const createdBurger = burgersService.createBurger(newBurger);
-    res.status(201).send(createdBurger);
-  } catch (error) {
-    res.status(500).send(error?.message);
-  }
+  const createdBurger = burgersService.createBurger(newBurger, (error, result) => {
+    error ? res.status(500).send(error) : res.send(result);
+  });
 
+  return createdBurger;
 };
 
 const updateBurger = (req, res) => {

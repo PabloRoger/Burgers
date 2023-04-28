@@ -18,7 +18,7 @@ function getBurgerById(burgerId, callback) {
   });
 }
 
-function createBurger(burgerData) {
+function createBurger(burgerData, callback) {
   const query = 'INSERT INTO Burger SET ?';
 
   connection.query(query, burgerData, (error, results) => {
