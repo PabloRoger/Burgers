@@ -1,15 +1,26 @@
 const burgersService = require("../services/burgerService");
 
 const getAllBurgers = (req, res) => {
-    burgersService.getAllBurgers((error, results) => {
-      error ? res.status(500).send(error) : res.send(results)
-    });
+  const getAllBurgers = burgersService.getAllBurgers((error, result) => {
+    error ? res.status(500).send(error) : res.send(result);
+  });
+
+  return getAllBurgers;
   };
 
 const getBurgerById = (req, res) => {
-    burgersService.getBurgerById(req.params.id, (error, result) => {
-        error ? res.status(500).send(error) : res.send(result);
-    });
+  const { id } = req.params;
+
+  if(!id){
+    res.status(400).send("Missing required information");
+    return;
+  }
+
+  const getOneBurger = burgersService.getBurgerById(id, (error, result) => {
+      error ? res.status(500).send(error) : res.send(result);
+  });
+
+  return getOneBurger;
 };
 
 const createBurger = (req, res) => {

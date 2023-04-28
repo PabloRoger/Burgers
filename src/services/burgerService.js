@@ -12,13 +12,15 @@ const getBurgerById = (burgerId, callback) => {
 
 const createBurger = (burgerData) =>{
   const burgerToInsert = {
+    // Spread operator to copy all properties from burgerData
     ...burgerData
   };
 
   try {
     const createdBurger = burger.createBurger(burgerToInsert);
+    return createdBurger;
   } catch (error) {
-    throw error;
+    throw new error;
   }
 }
 
