@@ -12,20 +12,45 @@ const getBurgerById = (req, res) => {
     });
 };
 
-
-
-/*TODO - fix this function*/
 const createBurger = (req, res) => {
-    const burgerData = req.body;
+  const { body } = req;
 
-    burgersService.createBurger(burgerData, (error, result) => {
-    if (error) {
-      console.log(error);
-      res.status(500).send('Error creating burger');
-    } else {
-      res.status(201).send(`Created a new burger with id: ${result.insertId}`);
-    }
-  });
+  if(
+    !body.user_id ||
+    !body.burger_name ||
+    !body.bread_type ||
+    !body.meat_type ||
+    !body.cheese_type ||
+    !body.sauce_type ||
+    !body.vegetable_type ||
+    !body.toppings_type ||
+    !body.description ||
+    !body.picture
+    ){
+    res.status(400).send("Missing required information");
+    return;
+  }
+
+  const newBurger = {
+    user_id: body.user_id,
+    burger_name: body.burger_name,
+    bread_type: body.bread_type,
+    meat_type: body.meat_type,
+    cheese_type: body.cheese_type,
+    sauce_type: body.sauce_type,
+    vegetable_type: body.vegetable_type,
+    toppings_type: body.toppings_type,
+    description: body.description,
+    picture: body.picture
+  };
+
+  try {
+    const createdBurger = burgersService.createBurger(newBurger);
+    res.status(201).send(createdBurger);
+  } catch (error) {
+    res.status(500).send(error?.message);
+  }
+
 };
 
 const updateBurger = (req, res) => {
