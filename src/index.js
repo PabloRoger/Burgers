@@ -3,7 +3,7 @@ const path = require("path");
 const v1BurgerRoutes = require("./v1/routes/burgersRoutes");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const publicPath = path.join(__dirname, "./public");
 
 // Set up static files
