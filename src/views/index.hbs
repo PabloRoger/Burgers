@@ -10,6 +10,29 @@
   <link rel="stylesheet" href="/css/PortadaInicio.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <title>Burgers</title>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const rankingNombreUno = document.querySelector('#nombre-ranking-uno');
+      const rankingNombreDos = document.querySelector('#nombre-ranking-dos');
+      const rankingNombreTres = document.querySelector('#nombre-ranking-tres');
+
+      fetch('/api/v1/burgers')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+
+          rankingNombreUno.innerHTML = data[0].burger_name;
+          rankingNombreDos.innerHTML = data[1].burger_name;
+          rankingNombreTres.innerHTML = data[2].burger_name;
+        })
+        .catch(error => console.log(error));
+    });
+
+
+  </script>
+
 </head>
 <body>
   <header>
@@ -126,12 +149,12 @@
                   <p>#2</p>
                 </div>
                 <div class="ranking-imagen">
-                  <img src="/img/burger-ejemplo.jpg" alt="" />
+                  <img id="foto-ranking-dos" src="/img/burger-ejemplo.jpg" alt="" />
                 </div>
 
                 <div class="ranking-responsive">
                   <div class="ranking-texto-h3">
-                    <h3>Nombre HAMBURGUESA</h3>
+                    <h3 id="nombre-ranking-dos">Nombre HAMBURGUESA</h3>
                   </div>
                   <div class="ranking-valoraciones">
                     <p>1000 valoraciones</p>
@@ -153,12 +176,14 @@
                   <p>#1</p>
                 </div>
                 <div class="ranking-imagen">
-                  <img src="/img/burger-ejemplo.jpg" alt="" />
+                  <img id="foto-ranking-uno" src="/img/burger-ejemplo.jpg" alt="" />
                 </div>
 
                 <div class="ranking-responsive">
                   <div class="ranking-texto-h3">
-                    <h3>Nombre HAMBURGUESA</h3>
+                    <div id="nombre-ranking-uno">
+                      <h3>Nombre HAMBURGUESA</h3>
+                    </div>
                   </div>
                   <div class="ranking-valoraciones">
                     <p>1000 valoraciones</p>
@@ -179,12 +204,12 @@
                   <p>#3</p>
                 </div>
                 <div class="ranking-imagen">
-                  <img src="/img/burger-ejemplo.jpg" alt="" />
+                  <img id="foto-ranking-tres" src="/img/burger-ejemplo.jpg" alt="" />
                 </div>
 
                 <div class="ranking-responsive">
                   <div class="ranking-texto-h3">
-                    <h3>Nombre HAMBURGUESA</h3>
+                    <h3 id="nombre-ranking-tres">Nombre HAMBURGUESA</h3>
                   </div>
                   <div class="ranking-valoraciones">
                     <p>1000 valoraciones</p>
