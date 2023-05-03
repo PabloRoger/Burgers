@@ -3,36 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {{!-- CSS --}}
   <link rel="stylesheet" href="/css/font.css">
   <link rel="stylesheet" href="/css/Inicio.css">
   <link rel="stylesheet" href="/css/Header.css">
   <link rel="stylesheet" href="/css/Footer.css">
   <link rel="stylesheet" href="/css/PortadaInicio.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  {{!-- JAVASCRIPT --}}
+  <script src="/js/rankingIndex.js"></script>
+
   <title>Burgers</title>
-
-  <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const rankingNombreUno = document.querySelector('#nombre-ranking-uno');
-      const rankingNombreDos = document.querySelector('#nombre-ranking-dos');
-      const rankingNombreTres = document.querySelector('#nombre-ranking-tres');
-
-      fetch('/api/v1/burgers')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-
-          rankingNombreUno.innerHTML = data[0].burger_name;
-          rankingNombreDos.innerHTML = data[1].burger_name;
-          rankingNombreTres.innerHTML = data[2].burger_name;
-        })
-        .catch(error => console.log(error));
-    });
-
-
-  </script>
-
 </head>
 <body>
   <header>
@@ -154,14 +137,14 @@
 
                 <div class="ranking-responsive">
                   <div class="ranking-texto-h3">
-                    <h3 id="nombre-ranking-dos">Nombre HAMBURGUESA</h3>
+                    <h3 id="nombre-ranking-2">Nombre HAMBURGUESA</h3>
                   </div>
                   <div class="ranking-valoraciones">
-                    <p>1000 valoraciones</p>
+                    <p id="valoraciones-ranking-2">1000 valoraciones</p>
                   </div>
                   <div class="ranking-especs">
                     <p>15 min</p>
-                    <p>5 ingredientes</p>
+                    <p id="ingredientes-2">5 ingredientes</p>
                     <p>Facil</p>
                   </div>
                 </div>
@@ -181,16 +164,14 @@
 
                 <div class="ranking-responsive">
                   <div class="ranking-texto-h3">
-                    <div id="nombre-ranking-uno">
-                      <h3>Nombre HAMBURGUESA</h3>
-                    </div>
+                    <h3 id="nombre-ranking-1">Nombre HAMBURGUESA</h3>
                   </div>
                   <div class="ranking-valoraciones">
-                    <p>1000 valoraciones</p>
+                    <p id="valoraciones-ranking-1">1000 valoraciones</p>
                   </div>
                   <div class="ranking-especs">
                     <p>15 min</p>
-                    <p>5 ingredientes</p>
+                    <p id="ingredientes-1">5 ingredientes</p>
                     <p>Facil</p>
                   </div>
                 </div>
@@ -209,14 +190,14 @@
 
                 <div class="ranking-responsive">
                   <div class="ranking-texto-h3">
-                    <h3 id="nombre-ranking-tres">Nombre HAMBURGUESA</h3>
+                    <h3 id="nombre-ranking-3">Nombre HAMBURGUESA</h3>
                   </div>
                   <div class="ranking-valoraciones">
-                    <p>1000 valoraciones</p>
+                    <p id="valoraciones-ranking-3">1000 valoraciones</p>
                   </div>
                   <div class="ranking-especs">
                     <p>15 min</p>
-                    <p>5 ingredientes</p>
+                    <p id="ingredientes-3">5 ingredientes</p>
                     <p>Facil</p>
                   </div>
                 </div>
