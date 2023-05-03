@@ -1,4 +1,5 @@
 -- CREATE DATABASE
+DROP DATABASE IF EXISTS burgers;
 CREATE DATABASE burgers;
 USE burgers;
 
@@ -31,7 +32,6 @@ CREATE TABLE IF NOT EXISTS Ranking (
   user_id INT NOT NULL,
   burger_id INT NOT NULL,
   rating INT NOT NULL,
-  date_burger DATE NOT NULL,
   FOREIGN KEY (user_id) REFERENCES User(user_id),
   FOREIGN KEY (burger_id) REFERENCES Burger(burger_id)
 );
@@ -182,3 +182,11 @@ VALUES (1, 'Mexicana', 'Pan de semillas', 'Cerdo', 'Manchego', 'Guacamole', 'Lec
 
 INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture)
 VALUES (1, 'Vegetal', 'Pan de hamburguesa integral', 'Hamburguesa de soja', 'Cabra', 'Tártara', 'Espinacas, tomate, cebolla', 'Huevo', 'Para los vegetarianos, una opción deliciosa y saludable', 'test_03.jpg');
+
+INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture)
+VALUES (2, 'Marrana', 'Pan de hamburguesa', 'Cerdo', 'Cabra', 'Barbacoa', 'Cebolla', 'Bacon', 'Para ver el futbol', 'test_04.jpg');
+
+-- BURGERS RANKING FOR TESTING
+INSERT INTO Ranking (user_id, burger_id, rating)
+VALUES
+(1, 10, 5),(1, 11, 4),(1, 12, 10), (1, 13, 2);
