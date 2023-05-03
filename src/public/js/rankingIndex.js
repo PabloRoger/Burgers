@@ -25,7 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update the DOM
             document.querySelector(`#nombre-ranking-${index + 1}`).textContent = burger.burger_name;
             document.querySelector(`#valoraciones-ranking-${index + 1}`).textContent = `${data[index].rating} valoraciones`;
+
+            document.querySelector(`#tiempo-${index + 1}`).textContent = `${burger.time_to_prepare} min`;
             document.querySelector(`#ingredientes-${index + 1}`).textContent = `${ingredientCount} ingredientes`;
+
+            const difficulties = {
+              1: 'Fácil',
+              2: 'Media',
+              3: 'Difícil'
+            };
+
+            // If the difficulty is not in the object, it will be 'Fácil'
+            const difficulty = difficulties[burger.difficulty] || 'Fácil';
+            document.querySelector(`#dificultad-${index + 1}`).textContent = difficulty;
+
           });
         })
         .catch((error) => {
