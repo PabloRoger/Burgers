@@ -18,6 +18,15 @@ function getBurgerById(burgerId, callback) {
   });
 }
 
+function getRanking(callback) {
+  const query = 'SELECT * FROM Ranking ORDER BY rating DESC';
+
+  connection.query(query, (error, results) => {
+    // MANAGE ERROR
+    error ? callback(error, null) : callback(null, results);
+  });
+}
+
 function createBurger(burgerData, callback) {
   const query = 'INSERT INTO Burger SET ?';
 
@@ -49,6 +58,7 @@ function deleteBurger(burgerId, callback) {
 module.exports = {
   getAllBurgers,
   getBurgerById,
+  getRanking,
   createBurger,
   updateBurger,
   deleteBurger

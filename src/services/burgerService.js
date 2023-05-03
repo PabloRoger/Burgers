@@ -10,6 +10,11 @@ const getBurgerById = (burgerId, callback) => {
   return oneBurger;
 }
 
+const getRanking = (callback) => {
+  const ranking = burger.getRanking(callback);
+  return ranking;
+}
+
 const createBurger = (burgerData, callback) =>{
   const burgerToInsert = {
     // Spread operator to copy all properties from burgerData
@@ -44,6 +49,7 @@ const deleteBurger = (burgerId, callback) =>{
 module.exports = {
   getAllBurgers,
   getBurgerById,
+  getRanking,
   createBurger,
   updateBurger,
   deleteBurger

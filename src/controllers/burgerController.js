@@ -33,6 +33,20 @@ const getBurgerById = (req, res) => {
   return getOneBurger;
 };
 
+const getRanking = (req, res) => {
+  const getRanking = burgersService.getRanking((error, result) => {
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
+  });
+
+  return getRanking;
+};
+
+
 const createBurger = (req, res) => {
   const { body } = req;
 
@@ -121,6 +135,7 @@ const deleteBurger = (req, res) => {
 module.exports = {
     getAllBurgers,
     getBurgerById,
+    getRanking,
     createBurger,
     updateBurger,
     deleteBurger
