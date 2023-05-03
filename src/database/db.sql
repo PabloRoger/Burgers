@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS Burger (
   toppings_type VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   picture VARCHAR(255) NOT NULL,
+  time_to_prepare INT NOT NULL,
+  difficulty INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
@@ -174,17 +176,12 @@ VALUES (@restaurant_id, @burger_id);
 
 
 -- BURGERS USERS FOR TESTING
-INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture)
-VALUES (1, 'Clásica', 'Pan de hamburguesa', 'Vacuno', 'Cheddar', 'Mayonesa, Kétchup, Mostaza', 'Lechuga, Tomate, Cebolla', 'Bacon', 'La hamburguesa más clásica de todas, para los amantes de los sabores tradicionales', 'test_01.jpg');
-
-INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture)
-VALUES (1, 'Mexicana', 'Pan de semillas', 'Cerdo', 'Manchego', 'Guacamole', 'Lechuga, Tomate, Cebolla', 'Nachos, Bacon', 'Una hamburguesa picante con un toque mexicano', 'test_02.jpg');
-
-INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture)
-VALUES (1, 'Vegetal', 'Pan de hamburguesa integral', 'Hamburguesa de soja', 'Cabra', 'Tártara', 'Espinacas, tomate, cebolla', 'Huevo', 'Para los vegetarianos, una opción deliciosa y saludable', 'test_03.jpg');
-
-INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture)
-VALUES (2, 'Marrana', 'Pan de hamburguesa', 'Cerdo', 'Cabra', 'Barbacoa', 'Cebolla', 'Bacon', 'Para ver el futbol', 'test_04.jpg');
+INSERT INTO Burger (user_id, burger_name, bread_type, meat_type, cheese_type, sauce_type, vegetable_type, toppings_type, description, picture, time_to_prepare, difficulty)
+VALUES
+(1, 'Clásica', 'Pan de hamburguesa', 'Vacuno', 'Cheddar', 'Mayonesa, Kétchup, Mostaza', 'Lechuga, Tomate, Cebolla', 'Bacon', 'La hamburguesa más clásica de todas, para los amantes de los sabores tradicionales', 'test_01.jpg', 10, 1),
+(1, 'Mexicana', 'Pan de semillas', 'Cerdo', 'Manchego', 'Guacamole', 'Lechuga, Tomate, Cebolla', 'Nachos, Bacon', 'Una hamburguesa picante con un toque mexicano', 'test_02.jpg', 15, 2),
+(1, 'Vegetal', 'Pan de hamburguesa integral', 'Hamburguesa de soja', 'Cabra', 'Tártara', 'Espinacas, tomate, cebolla', 'Huevo', 'Para los vegetarianos, una opción deliciosa y saludable', 'test_03.jpg', 8, 3),
+(2, 'Marrana', 'Pan de hamburguesa', 'Cerdo', 'Cabra', 'Barbacoa', 'Cebolla', 'Bacon', 'Para ver el futbol', 'test_04.jpg', 10, 1);
 
 -- BURGERS RANKING FOR TESTING
 INSERT INTO Ranking (user_id, burger_id, rating)
