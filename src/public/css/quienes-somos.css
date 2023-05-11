@@ -1,0 +1,224 @@
+/* INICIO SECCIONES */
+/* QUE ES? */
+
+.que-es-burgers {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.que-es-burgers img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.que-es-burgers h2 {
+  color: red;
+  font-size: 80px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.que-es-burgers p {
+  max-width: 500px;
+  font-size: 20px;
+  text-align: left;
+
+  margin-bottom: 30px;
+}
+
+.que-es-burgers a {
+  margin: 0px;
+  padding: 12px;
+
+  font-size: 16px;
+  border-radius: 20px;
+
+  text-decoration: none;
+
+  background-color: red;
+  color: white;
+
+  font-weight: 500;
+
+  display: block;
+  width: 110px;
+}
+
+.que-es-burgers a:hover {
+  filter: brightness(0.8);
+  color: white;
+}
+
+
+.que-es-burgers-abajo{
+  height: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.que-es-burgers-abajo h2{
+  color: red;
+  font-size: 80px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.que-es-burgers-abajo p{
+  max-width: 500px;
+  font-size: 20px;
+  text-align: left;
+
+  margin-bottom: 30px;
+}
+
+.que-es-burgers-abajo a{
+  margin: 0px;
+  padding: 12px;
+
+  font-size: 16px;
+  border-radius: 20px;
+
+  text-decoration: none;
+
+  background-color: red;
+  color: white;
+
+  font-weight: 500;
+
+  display: block;
+  width: 110px;
+}
+
+.que-es-burgers-abajo a:hover{
+  filter: brightness(0.8);
+  color: white;
+}
+
+.que-es-burgers-abajo img{
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.btn-access{
+  margin: 40px auto;
+  padding: 12px;
+
+  font-size: 16px;
+  border-radius: 30px;
+
+  text-decoration: none;
+
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+
+  font-weight: 500;
+
+  display: block;
+  width: 150px;
+
+  text-align: center;
+}
+
+.btn-access a{
+  color: white;
+  text-decoration: none;
+}
+
+
+/* MEDIA QUERIES */
+@media (max-width: 991px) {
+  .que-es-burgers, .que-es-burgers-abajo{
+    margin-top: 0px;
+  }
+
+  .que-es-burgers img, .que-es-burgers-abajo img{
+    width: 300px;
+    height: 500px;
+  }
+
+  .que-es-burgers h2, .que-es-burgers p, .que-es-burgers a{
+    margin-right: 70px;
+  }
+
+  .que-es-burgers-abajo h2, .que-es-burgers-abajo p{
+    margin-left: 70px;
+  }
+}
+
+@media (max-width: 767px) {
+  .que-es-burgers{
+    margin-top: 100px;
+    margin-bottom: 0px;
+    height: 500px;
+  }
+  .que-es-burgers-image{
+    margin-top: 0px;
+  }
+
+  .que-es-burgers img{
+    margin-top: 0px;
+    width: 100%;
+    height: 567px;
+  }
+
+  .que-es-burgers-abajo{
+    margin-top: 0px;
+    height: 500px;
+  }
+
+  .que-es-burgers-abajo img{
+    margin-top: 100px;
+    width: 100%;
+    height: 567px;
+  }
+
+  .que-es-burgers h2, .que-es-burgers p, .que-es-burgers a, .que-es-burgers-abajo h2, .que-es-burgers-abajo p, .que-es-burgers-abajo a{
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 500px;
+  }
+
+  .btn-access{
+    margin-top: 0px;
+  }
+}
+
+
+@media (max-width: 575px) {
+  .que-es-burgers h2, .que-es-burgers-abajo h2{
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 479px) {
+  .que-es-burgers h2, .que-es-burgers-abajo h2{
+    font-size: 60px;
+  }
+
+  .que-es-burgers p, .que-es-burgers-abajo p{
+    font-size: 18px;
+  }
+}

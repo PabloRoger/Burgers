@@ -2,103 +2,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/Header.css"/>
+    <link rel="stylesheet" href="/css/Header.css" />
+    <link rel="stylesheet" href="/css/Registro.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <title>Registro</title>
   </head>
   <body>
-    <header>
-      <nav id="navegacion">
-        <a href="/">
-          <img
-            src="/img/logoBlanco.svg"
-            id="logoNav"
-            alt="logo blanco Burgers"
-            width="200"
-            height="50"
-          />
-        </a>
 
-        <div class="navbar">
-          <ul>
-            <li>
-              <a href="a">Crear</a>
-            </li>
-            <li>
-              <a href="a">Ranking</a>
-            </li>
-            <li>
-              <a href="a">Quienes somos</a>
-            </li>
-            <li>
-              <a href="a">Contacto</a>
-            </li>
-          </ul>
-        </div>
+    {{> navbar}}
 
-        {{! TODO: AÑADIR EL ICONO DE USUARIO CUANDO SEA RESPONSIVE }}
 
-        <a href="/register" class="connection"> Registrar </a>
-        <a href="/login" class="connection"> Entrar </a>
-
-        <button id="hamburguesa">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-    </header>
     <main>
-      <div class="container pt-4">
-        <div class="card mt-5" style="width: 18rem;">
-          <div class="card-header">Registro</div>
-          <div class="card-body">
-
-            <form action="/api/v1/auth/register" method="POST">
-              <div class="mb-3">
-                <label for="username" class="form-label">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  name="username"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  name="password"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="passwordConfirmation" class="form-label">Confirm
-                  Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="passwordConfirmation"
-                  name="passwordConfirmation"
-                />
-              </div>
-
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-          </div>
+<div class="container pt-4 d-flex justify-content-center align-items-center contenedor">
+  <div class="card formulario-contenedor">
+    <div class="row">
+      <div class="col-md-6 imageRegister">
+        <div style="width: 500px; height: 500px; overflow: hidden;">
+          <img src="img/registro.jpg" alt="Imagen de registro">
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <form action="/api/v1/auth/register" method="POST">
+            <div class="mb-3">
+              <h1>Registro</h1>
+              <label for="username" class="form-label">Nombre de usuario</label>
+              <input type="text" class="form-control" id="username" name="username" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" name="email" />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" name="password" />
+            </div>
+            <div class="mb-3">
+              <label for="passwordConfirmation" class="form-label">Confirmar contraseña</label>
+              <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" />
+            </div>
+            <div class="formulario-submit">
+              <input type="submit" value="Enviar" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     </main>
   </body>
 </html>

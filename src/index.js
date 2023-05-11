@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { engine } = require('express-handlebars');
 const v1BurgerRoutes = require("./v1/routes/burgersRoutes");
 const v1AuthRoutes = require("./v1/routes/authRoutes");
 
@@ -17,12 +18,19 @@ app.use("/api/v1", v1BurgerRoutes);
 app.use("/api/v1", v1AuthRoutes);
 
 // Set up handlebars
-app.set("views", path.join(__dirname, "./views"));
+app.engine("hbs", engine({
+    extname: ".hbs",
+    defaultLayout: "main",
+    partialsDir: path.join(__dirname, "views/partials"),
+    layoutsDir: path.join(__dirname, "views/layouts")
+}));
+
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 // Set up routes
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("home");
 });
 
 app.get("/register", (req, res) => {
@@ -31,6 +39,14 @@ app.get("/register", (req, res) => {
 
 app.get("/login", (req, res) => {
     res.render("auth/login");
+});
+
+app.get("/contacto", (req, res) => {
+    res.render("contact");
+});
+
+app.get("/quienes-somos", (req, res) => {
+    res.render("quienes-somos");
 });
 
 // Start the server
