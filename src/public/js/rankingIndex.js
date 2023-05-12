@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Promise.all(
         data.slice(0, 3).map((burger) =>
           fetch(`/api/v1/burger/${burger.burger_id}`)
-          .then((response) => response.json())
+            .then((response) => response.json())
         )
       )
         .then((burgerDetails) => {
@@ -48,5 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch((error) => {
       console.error('Error to get ranking details: ', error);
     }
-  );
+    );
 });
