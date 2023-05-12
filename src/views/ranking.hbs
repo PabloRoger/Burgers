@@ -1,0 +1,264 @@
+<body>
+  <header>
+    {{> navbar}}
+  </header>
+  <main style="padding-top: 115px">
+    <div class="container">
+      <h1>MierdaRanking</h1>
+
+      <!-- Filter -->
+      <div class="row mb-3">
+        <div class="col-md-3 mb-3">
+          <select id="filter-amount" class="form-select">
+            <option value="">Cantidad</option>
+            <option value="2">2</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <select id="filter-difficulty" class="form-select">
+            <option value="">Dificultad</option>
+            <option value="1">Fácil</option>
+            <option value="2">Media</option>
+            <option value="3">Difícil</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <select id="filter-num-ingredients" class="form-select">
+            <option value="">Nº Ingredientes</option>
+            <option value="under-five">Menos de 5</option>
+            <option value="between-five-ten">Entre 5 y 10</option>
+            <option value="more-ten">Más de 10</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <select id="filter-ingredients" class="form-select">
+            <option value="">Ingredientes</option>
+            <optgroup label="Pan">
+              <option value="cristal">Pan de cristal</option>
+              <option value="mollete">Mollete</option>
+              <option value="brioche">Brioche</option>
+              <option value="normal">Pan burger normal</option>
+              <option value="integral">Pan burger integral</option>
+            </optgroup>
+
+            <optgroup label="Carne">
+              <option value="ternera">Carne de ternera</option>
+              <option value="pollo">Carne de pollo</option>
+              <option value="cerdo">Carne de cerdo</option>
+              <option value="vegana">Carne vegana</option>
+            </optgroup>
+
+            <optgroup label="Queso">
+              <option value="cheddar">Queso cheddar</option>
+              <option value="gouda">Queso gouda</option>
+              <option value="brie">Queso brie</option>
+              <option value="mozarella">Queso mozarella</option>
+              <option value="sin-queso">Sin queso</option>
+            </optgroup>
+
+            <optgroup label="Salsas">
+              <option value="ketchup">Ketchup</option>
+              <option value="mostaza">Mostaza</option>
+              <option value="mayonesa">Mayonesa</option>
+              <option value="barbacoa">Salsa barbacoa</option>
+              <option value="sin-salsa">Sin salsa</option>
+            </optgroup>
+
+            <optgroup label="Verduras">
+              <option value="lechuga">Lechuga</option>
+              <option value="tomate">Tomate</option>
+              <option value="cebolla">Cebolla</option>
+              <option value="pepinillo">Pepinillo</option>
+            </optgroup>
+
+            <optgroup label="Toppings">
+              <option value="huevo">Huevo</option>
+              <option value="bacon">Bacon</option>
+              <option value="patatas">Patatas</option>
+              <option value="cebolla-caramelizada">Cebolla caramelizada</option>
+            </optgroup>
+
+          </select>
+        </div>
+      </div>
+
+      <!-- Contenedor de la tabla con desplazamiento horizontal -->
+      <div class="table-responsive">
+        <!-- Tabla -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Dificultad</th>
+              <th>Num ingre.</th>
+              <th>Ingredientes</th>
+              <th>Usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Aquí se generarán las filas de la tabla dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const selectAmount = document.getElementById("filter-amount");
+      const selectDifficulty = document.getElementById("filter-difficulty");
+      const selectNumIngredients = document.getElementById("filter-num-ingredients");
+      const selectIngredients = document.getElementById("filter-ingredients");
+
+      selectAmount.addEventListener("change", () => {
+        const amountForShow = parseInt(selectAmount.value);
+        applyFilters(amountForShow);
+      });
+
+      selectDifficulty.addEventListener("change", () => {
+        applyFilters();
+      });
+
+      selectNumIngredients.addEventListener("change", () => {
+        applyFilters();
+      });
+
+      selectIngredients.addEventListener("change", () => {
+        applyFilters();
+      });
+
+      function applyFilters(amountForShow) {
+        let numBurgers = amountForShow || 10;
+        const difficulty = parseInt(selectDifficulty.value) || "";
+        const numIngredients = selectNumIngredients.value;
+        let selectedIngredients = selectIngredients.value;
+
+        selectedIngredients = selectedIngredients.charAt(0).toUpperCase() + selectedIngredients.slice(1);
+        console.log(selectedIngredients);
+
+        fetch('/api/v1/ranking')
+          .then((response) => response.json())
+          .then((data) => {
+            Promise.all(
+              data.slice(0, numBurgers).map((burger) =>
+                fetch(`/api/v1/burger/${burger.burger_id}`)
+                  .then((response) => response.json())
+              )
+            )
+              .then((burgerDetails) => {
+                let filteredBurgers = burgerDetails;
+
+                if (difficulty !== "") {
+                  filteredBurgers = filterByDifficulty(filteredBurgers, difficulty);
+                }
+
+                if (numIngredients !== "") {
+                  filteredBurgers = filterByNumIngredients(filteredBurgers, numIngredients);
+                }
+
+                if (selectedIngredients.length > 0) {
+                  filteredBurgers = filterByIngredients(filteredBurgers, selectedIngredients);
+                }
+
+                renderTable(filteredBurgers);
+              })
+              .catch((error) => {
+                console.error('Error al obtener los detalles de las hamburguesas: ', error);
+              });
+          })
+          .catch((error) => {
+            console.error('Error al obtener los detalles del ranking: ', error);
+          });
+      }
+
+      function filterByDifficulty(burgers, difficulty) {
+        return burgers.filter((burger) => burger.difficulty === difficulty);
+      }
+
+      function filterByNumIngredients(burgers, numIngredients) {
+        return burgers.filter((burger) => {
+          const ingredientCount = getIngredientCount(burger);
+          if (numIngredients === "under-five") {
+            return ingredientCount < 5;
+          } else if (numIngredients === "between-five-ten") {
+            return ingredientCount >= 5 && ingredientCount <= 10;
+          } else if (numIngredients === "more-ten") {
+            return ingredientCount > 10;
+          }
+          return true;
+        });
+      }
+
+      function filterByIngredients(burgers, selectedIngredients) {
+        return burgers.filter((burger) => {
+          const ingredients = getAllIngredients(burger);
+          return ingredients.includes(selectedIngredients);
+        });
+      }
+
+      function getAllIngredients(burger) {
+        const allIngredients = [];
+        const ingredientTypes = ['bread', 'sauce', 'meat', 'cheese', 'toppings', 'vegetable'];
+
+        ingredientTypes.forEach((ingredientType) => {
+          const ingredients = burger[`${ingredientType}_type`].split(',');
+          allIngredients.push(...ingredients);
+        });
+
+        return allIngredients;
+      }
+
+        function getIngredientCount(burger) {
+          let ingredientCount = 0;
+          const ingredientTypes = ['bread', 'sauce', 'meat', 'cheese', 'toppings', 'vegetable'];
+
+          ingredientTypes.forEach((ingredientType) => {
+            const ingredients = burger[`${ingredientType}_type`].split(',');
+            ingredientCount += ingredients.length;
+          });
+
+          return ingredientCount;
+        }
+
+
+        // DISPLAY TABLE
+        function renderTable(burgers) {
+          const tbody = document.querySelector("tbody");
+          tbody.innerHTML = "";
+
+          burgers.forEach((burger, index) => {
+            const allIngredients = getAllIngredients(burger);
+            const ingredientCount = allIngredients.length;
+
+            const difficulties = {
+              1: 'Fácil',
+              2: 'Media',
+              3: 'Difícil'
+            };
+
+            const difficulty = difficulties[burger.difficulty] || 'Fácil';
+
+            var row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${burger.burger_name}</td>
+              <td>${difficulty}</td>
+              <td>${ingredientCount}</td>
+              <td>${allIngredients.join(", ")}</td>
+            `;
+
+            tbody.appendChild(row);
+          });
+        }
+
+        applyFilters();
+      });
+
+  </script>
+</body>
