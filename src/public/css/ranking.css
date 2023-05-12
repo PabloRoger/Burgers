@@ -1,0 +1,25 @@
+.red-banner {
+  background-color: red;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.red-banner h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.red-banner p {
+  font-size: 18px;
+}
+
+.red-banner .btn {
+  margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+  .red-banner .img-fluid {
+    display: none;
+  }
+}
