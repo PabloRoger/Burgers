@@ -49,6 +49,11 @@ app.get("/quienes-somos", (req, res) => {
     res.render("quienes-somos");
 });
 
+app.get("/ranking", (req, res) => {
+    res.render("ranking");
+});
+
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}!`)
