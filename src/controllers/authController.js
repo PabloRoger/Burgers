@@ -14,6 +14,7 @@ const getAllUsers = (req, res) => {
   return users;
 }
 
+
 const getUserByEmail = (req, res) => {
   const { email } = req.params;
 
@@ -29,20 +30,24 @@ const getUserByEmail = (req, res) => {
   return user;
 }
 
+
 const authenticateUser = (req, res) => {
   const { username, password } = req.body;
 
-  const authenticatedUser = authService.authenticateUser(username, password, (error, result) => {
+  authService.authenticateUser(username, password, (error, result) => {
     if (error) {
-      res.status(500).send({ error: error.message })
+      res.status(500).send({ error: error.message });
       return;
     }
+    req.session.user = {
+      ...result,
+      username: username
+    };
 
-    res.send(result);
+    res.redirect("/");
   });
+};
 
-  return authenticatedUser;
-}
 
 const registerUser = (req, res) => {
   const { body } = req;
@@ -58,11 +63,12 @@ const registerUser = (req, res) => {
       return;
     }
 
-    res.send(result);
+    res.redirect("/login");
   });
 
   return createdUser;
 }
+
 
 const updateUser = (req, res) => {
   const { body } = req;
@@ -79,6 +85,7 @@ const updateUser = (req, res) => {
 
   return updatedUser;
 }
+
 
 const deleteUser = (req, res) => {
   const { userId } = req.params;

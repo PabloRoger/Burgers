@@ -3,21 +3,23 @@ const bcrypt = require('bcryptjs');
 
 
 function getAllUsers(callback){
-  const query = 'SELECT * FROM User';
+  const query = 'SELECT * FROM user';
   connection.query(query, (error, results) => {
     error ? callback(error, null) : callback(null, results);
   });
 }
 
+
 function getUserByEmail(email, callback){
-  const query = 'SELECT * FROM User WHERE email = ?';
+  const query = 'SELECT * FROM user WHERE email = ?';
   connection.query(query, email, (error, result) => {
     error ? callback(error, null) : callback(null, result[0]);
   });
 }
 
+// AUTHENTICATION USER
 function authenticateUser(username, password, callback) {
-  const query = 'SELECT * FROM User WHERE username = ?';
+  const query = 'SELECT * FROM user WHERE username = ?';
 
   connection.query(query, username, async (error, result) => {
     if (error) {
@@ -39,13 +41,17 @@ function authenticateUser(username, password, callback) {
       return;
     }
 
-    callback(null, { message: "User authenticated" });
-  }
-  );
+    // Agregar el nombre de usuario al objeto de resultado
+    user.username = username;
+
+    callback(null, user); // Pasar el objeto de usuario completo al callback
+  });
 }
 
+
+// REGISTER USER
 function registerUser(userData, callback) {
-  const query = 'SELECT email FROM User WHERE email = ?';
+  const query = 'SELECT email FROM user WHERE email = ?';
   connection.query(query, userData.email, async (error, result) => {
     if (error) {
       callback(error, null);
@@ -75,15 +81,17 @@ function registerUser(userData, callback) {
   });
 }
 
+
 function updateUser(userId, changes, callback) {
-  const query = 'UPDATE User SET ? WHERE user_id = ?';
+  const query = 'UPDATE user SET ? WHERE user_id = ?';
   connection.query(query, [ changes, userId ], (error, result) => {
     error ? callback(error, null) : callback(null, result);
   });
 }
 
+
 function deleteUser(userId, callback) {
-  const query = 'DELETE FROM User WHERE user_id = ?';
+  const query = 'DELETE FROM user WHERE user_id = ?';
   connection.query(query, userId, (error, result) => {
     error ? callback(error, null) : callback(null, result);
   });
