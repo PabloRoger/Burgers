@@ -9,6 +9,7 @@ const PORT = 3000;
 const publicPath = path.join(__dirname, "./public");
 
 const session = require('express-session');
+const { title } = require("process");
 
 app.use(session({
     secret: 'my-secret-key',
@@ -41,25 +42,29 @@ app.set("view engine", "hbs");
 // Set up routes
 app.get("/", (req, res) => {
     res.render("home", {
-        session: req.session
+        session: req.session,
+        title: "Burgers"
     });
 });
 
 app.get("/contacto", (req, res) => {
     res.render("contact", {
-        session: req.session
+        session: req.session,
+        title: "Contacto"
     });
 });
 
 app.get("/quienes-somos", (req, res) => {
     res.render("quienes-somos", {
-        session: req.session
+        session: req.session,
+        title: "Quienes somos"
     });
 });
 
 app.get("/ranking", (req, res) => {
     res.render("ranking", {
-        session: req.session
+        session: req.session,
+        title: "Ranking"
     });
 });
 
@@ -70,17 +75,22 @@ app.get("/crear", (req, res) => {
         return;
     }
     res.render("crear", {
-        session: req.session
+        session: req.session,
+        title: "Crear"
     });
 });
 
 
 app.get("/register", (req, res) => {
-    res.render("auth/register");
+    res.render("auth/register", {
+        title: "Registro"
+    });
 });
 
 app.get("/login", (req, res) => {
-    res.render("auth/login");
+    res.render("auth/login", {
+        title: "Entrar"
+    });
 });
 
 app.get("/profile", (req, res) => {
@@ -89,7 +99,8 @@ app.get("/profile", (req, res) => {
         return;
     }
     res.render("profile", {
-        session: req.session
+        session: req.session,
+        title: "Perfil"
     });
 });
 
@@ -107,7 +118,8 @@ app.get("/burger/:id", (req, res) => {
 
     res.render("burger", {
         session: req.session,
-        burger: burger_id
+        burger: burger_id,
+        title: "Burger"
     });
 });
 
