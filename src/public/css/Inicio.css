@@ -312,6 +312,10 @@
   color: rgb(255, 0, 0);
 }
 
+.ranking-responsive{
+  text-align: center;
+}
+
 
 /* MEDIA QUERIES */
 

@@ -1,0 +1,59 @@
+.burger-author, .product-difficulty, .product-num-ingredient, .product-time{
+  display: block ruby;
+}
+
+.product{
+  margin-top: 100px !important;
+  margin-bottom: 50px;
+}
+
+.product-img{
+  width: 90%;
+  height: 100%;
+
+  border: 3px solid #ff0000;
+  border-radius: 5px;
+
+  box-shadow: 10px 10px 0px #ff0000;
+
+  overflow: hidden;
+}
+
+.product-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-name{
+  display: flex;
+  justify-content: space-between;
+}
+.favorites{
+  border: 0px;
+  background-color: transparent;
+}
+
+#hearth-fav{
+  font-weight: 400;
+  font-size: 32px;
+
+  transition: 0.3s;
+}
+
+#hearth-fav:hover{
+  font-size: 40px;
+  transition: 0.3s;
+}
+
+#hearth-fav-active{
+  font-weight: 900;
+  font-size: 32px;
+
+  transition: 0.3s;
+}
+
+#hearth-fav-active:hover{
+  font-size: 40px;
+  transition: 0.3s;
+}

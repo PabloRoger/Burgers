@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedIngredients = selectIngredients.value;
 
     selectedIngredients = selectedIngredients.charAt(0).toUpperCase() + selectedIngredients.slice(1);
-    console.log(selectedIngredients);
 
     fetch('/api/v1/ranking')
       .then((response) => response.json())
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var row = document.createElement("tr");
       row.innerHTML = `
           <td>${index + 1}</td>
-          <td>${burger.burger_name}</td>
+          <td><a href="/burger/${burger.burger_id}">${burger.burger_name}</a></td>
           <td>${difficulty}</td>
           <td>${ingredientCount}</td>
           <td>${allIngredients.join(", ")}</td>

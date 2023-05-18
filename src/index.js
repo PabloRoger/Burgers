@@ -102,6 +102,14 @@ app.get('/logout', (req, res) => {
     });
 });
 
+app.get("/burger/:id", (req, res) => {
+    const burger_id = req.params.id;
+
+    res.render("burger", {
+        session: req.session,
+        burger: burger_id
+    });
+});
 
 // Start the server
 app.listen(PORT, () => {
