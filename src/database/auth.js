@@ -41,10 +41,9 @@ function authenticateUser(username, password, callback) {
       return;
     }
 
-    // Agregar el nombre de usuario al objeto de resultado
     user.username = username;
 
-    callback(null, user); // Pasar el objeto de usuario completo al callback
+    callback(null, user);
   });
 }
 
