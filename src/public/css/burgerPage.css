@@ -3,7 +3,7 @@
 }
 
 .product{
-  margin-top: 100px !important;
+  margin-top: 50px !important;
   margin-bottom: 50px;
 }
 
@@ -38,22 +38,42 @@
   font-weight: 400;
   font-size: 32px;
 
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 #hearth-fav:hover{
   font-size: 40px;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 #hearth-fav-active{
   font-weight: 900;
   font-size: 32px;
 
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 #hearth-fav-active:hover{
   font-size: 40px;
-  transition: 0.3s;
+  transition: 0.1s;
+}
+
+.back-arrow{
+  color: #ff0000 !important;
+  font-size: 20px;
+  font-weight: 500;
+
+  text-decoration: none !important;
+}
+
+.back-arrow:hover{
+  border-bottom: 1px solid #ff0000 !important;
+}
+
+#back{
+  padding-right: 5px;
+}
+
+#back-arrow-nav{
+  margin-top: 65px;
 }

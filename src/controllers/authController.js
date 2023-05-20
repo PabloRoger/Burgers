@@ -1,4 +1,5 @@
 const authService = require("../services/authService");
+const bcrypt = require("bcryptjs");
 
 
 const getAllUsers = (req, res) => {
@@ -15,10 +16,10 @@ const getAllUsers = (req, res) => {
 }
 
 
-const getUserByEmail = (req, res) => {
-  const { email } = req.params;
+const getUserById = (req, res) => {
+  const { id } = req.params;
 
-  const user = authService.getUserByEmail(email, (error, result) => {
+  const user = authService.getUserById(id, (error, result) => {
     if (error) {
       res.status(500).send({ error: error.message })
       return;
@@ -71,20 +72,40 @@ const registerUser = (req, res) => {
 
 
 const updateUser = (req, res) => {
-  const { body } = req;
-  const { userId } = req.params;
+  const { user_id, picture, username, email, password, new_password } = req.body;
 
-  const updatedUser = authService.updateUser(userId, body, (error, result) => {
+  authService.getUserById(user_id, (error, user) => {
     if (error) {
-      res.status(500).send({ error: error.message })
+      res.status(500).send({ error: error.message });
       return;
     }
 
-    res.send(result);
-  });
+    authService.authenticateUser(user.username, password, (error, result) => {
+      if (error) {
+        res.status(500).send({ error: error.message });
+        return;
+      }
 
-  return updatedUser;
-}
+      const changes = {
+        picture: picture,
+        username: username,
+        email: email,
+        // if new_password is provided, hash it, otherwise keep the old password
+        password: new_password ? bcrypt.hashSync(new_password, bcrypt.genSaltSync(10)) : user.password
+      };
+
+      authService.updateUser(user_id, changes, (error, result) => {
+        if (error) {
+          res.status(500).send({ error: error.message });
+          return;
+        }
+
+        res.send(result);
+      });
+    });
+  });
+};
+
 
 
 const deleteUser = (req, res) => {
@@ -104,7 +125,7 @@ const deleteUser = (req, res) => {
 
 module.exports = {
   getAllUsers,
-  getUserByEmail,
+  getUserById,
   authenticateUser,
   registerUser,
   updateUser,

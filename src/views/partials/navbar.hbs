@@ -11,7 +11,7 @@
     <li class="item"><a href="/contacto">Contacto</a></li>
     </li>
     {{#if session.user}}
-        <li class="item button"><a href="/profile">{{session.user.username}}</a></li>
+        <li class="item button"><a href='/profile/{{session.user.user_id}}'>{{session.user.username}}</a></li>
         <li class="item button secondary"><a href="/logout">Cerrar sesión</a></li>
       {{else}}
         <li class="item button"><a href="/login">Entrar</a></li>

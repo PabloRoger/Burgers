@@ -4,70 +4,75 @@
   <header>
     {{> navbar}}
   </header>
-  <div class="container pt-5">
+  <main>
+    <div class="container pt-5">
 
-
-    {{!-- TODO BREADSCRUM --}}
-
-
-
-    <div class="row mt-5 product">
-      <div class="col-lg-6">
-        <div class="product-img">
-          <img id="burger-img" alt="Hamburguesa" class="img-fluid"></img>
+      {{!-- flecha a la izquierda, un link para volver a ranking --}}
+      <div class="row" id="back-arrow-nav">
+        <div class="col-lg-12">
+          <a href="/ranking" class="back-arrow">
+            <i id="back" class="fa-solid fa-arrow-left"></i>
+            Ranking
+          </a>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="product-name">
-          <h1 id="burger-name" class="my-3"></h1>
-          <button class="favorites">
-            <i id="hearth-fav" class="fa-solid fa-heart" style="color: #ff0000;"></i>
-          </button>
-        </div>
-        <hr>
 
-        <div class="product-author">
-          <h6>Autor: </h6>
-          <p id="burger-author"></p>
+      <div class="row my-3 product">
+        <div class="col-lg-6">
+          <div class="product-img">
+            <img id="burger-img" alt="Hamburguesa" class="img-fluid"></img>
+          </div>
         </div>
+        <div class="col-lg-6">
+          <div class="product-name">
+            <h1 id="burger-name" class="my-3"></h1>
+            <button class="favorites">
+              <i id="hearth-fav" class="fa-solid fa-heart" style="color: #ff0000;"></i>
+            </button>
+          </div>
+          <div class="product-author">
+            <h6>Autor: </h6>
+            <a id="burger-author"></a>
+          </div>
+          <hr>
 
-        <div class="product-difficulty">
-          <h6>Dificultad: </h6>
-          <p id="burger-difficulty"></p>
+
+          <div class="product-difficulty">
+            <h6>Dificultad: </h6>
+            <p id="burger-difficulty"></p>
+          </div>
+
+          <div class="product-time">
+            <h6>Tiempo: </h6>
+            <p id="burger-time"></p>
+          </div>
+
+          <div class="product-num-ingredient">
+            <h6>Número de ingredientes: </h6>
+            <p id="burger-num-ingredients"></p>
+          </div>
+
+          <div class="product-ingredients">
+            <h6>Ingredientes:</h6>
+            <ul id="burger-ingredients-list" class="list-group list-group-flush"></ul>
+          </div>
+
+          <div class="product-description my-3">
+            <h6>Descripción:</h6>
+            <p id="burger-description"></p>
+          </div>
+
         </div>
+      </div>
 
-        <div class="product-time">
-          <h6>Tiempo: </h6>
-          <p id="burger-time"></p>
+      <div class="row">
+        {{!-- PRODUCTOS RECOMENDADOS --}}
+        <div class="col-lg-12 my-5">
+          <h2>La burger más parecida</h2>
         </div>
-
-        <div class="product-num-ingredient">
-          <h6>Número de ingredientes: </h6>
-          <p id="burger-num-ingredients"></p>
-        </div>
-
-        <div class="product-ingredients">
-          <h6>Ingredientes:</h6>
-          <ul id="burger-ingredients-list"></ul>
-        </div>
-
-        <div class="product-description">
-          <h6>Descripción:</h6>
-          <p id="burger-description"></p>
-        </div>
-
       </div>
     </div>
-
-    <div class="row">
-      {{!-- PRODUCTOS RECOMENDADOS --}}
-      <div class="col-lg-12 mt-5">
-        <h2>Burgers similares</h2>
-      </div>
-    </div>
-  </div>
-
-
+  </main>
   <footer>
     {{> footer}}
   </footer>

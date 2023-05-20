@@ -5,8 +5,8 @@ const getAllUsers = (callback) => {
   return users;
 }
 
-const getUserByEmail = (email, callback) => {
-  const user = auth.getUserByEmail(email, callback);
+const getUserById = (id, callback) => {
+  const user = auth.getUserById(id, callback);
   return user;
 }
 
@@ -41,7 +41,7 @@ const deleteUser = (userId, callback) => {
 
 module.exports = {
   getAllUsers,
-  getUserByEmail,
+  getUserById,
   authenticateUser,
   registerUser,
   updateUser,

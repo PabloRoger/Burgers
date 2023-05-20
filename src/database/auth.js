@@ -10,9 +10,9 @@ function getAllUsers(callback){
 }
 
 
-function getUserByEmail(email, callback){
-  const query = 'SELECT * FROM user WHERE email = ?';
-  connection.query(query, email, (error, result) => {
+function getUserById(id, callback){
+  const query = 'SELECT * FROM user WHERE user_id = ?';
+  connection.query(query, id, (error, result) => {
     error ? callback(error, null) : callback(null, result[0]);
   });
 }
@@ -99,7 +99,7 @@ function deleteUser(userId, callback) {
 
 module.exports = {
   getAllUsers,
-  getUserByEmail,
+  getUserById,
   authenticateUser,
   registerUser,
   updateUser,

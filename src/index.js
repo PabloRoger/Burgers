@@ -7,6 +7,7 @@ const v1AuthRoutes = require("./v1/routes/authRoutes");
 const app = express();
 const PORT = 3000;
 const publicPath = path.join(__dirname, "./public");
+const cors = require("cors");
 
 const session = require('express-session');
 const { title } = require("process");
@@ -23,6 +24,7 @@ app.use(express.static(publicPath));
 // Middleware needed to parse JSON bodies of POST requests
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 // API Rest routes
 app.use("/api/v1", v1BurgerRoutes);
 app.use("/api/v1", v1AuthRoutes);
@@ -93,13 +95,17 @@ app.get("/login", (req, res) => {
     });
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile/:id", (req, res) => {
+    const user_id = req.params.id;
+
     if (!req.session.user) {
         res.redirect("/login");
         return;
     }
+
     res.render("profile", {
         session: req.session,
+        user: user_id,
         title: "Perfil"
     });
 });

@@ -59,10 +59,29 @@ document.addEventListener('DOMContentLoaded', () => {
     burgerTimeToPrepare.innerText = `${burger.time_to_prepare} minutos`;
     burgerDescription.innerText = burger.description;
 
-    allIngredients.forEach((ingredient) => {
+    allIngredients.forEach((ingredient, index) => {
+      // LIST ITEM
       const li = document.createElement("li");
-      li.innerText = ingredient.toLowerCase();
+      li.className = "list-group-item";
+
+      // CHECKBOX
+      const input = document.createElement("input");
+      input.setAttribute("type", "checkbox");
+      input.setAttribute("id", ingredient.concat(index));
+      input.setAttribute("value", "");
+      input.className = "form-check-input";
+      input.classList.add("me-2");
+
+      // LABEL
+      const label = document.createElement("label");
+      label.setAttribute("for", ingredient.concat(index));
+      label.className = "form-check-label";
+      label.innerText = ingredient.toLowerCase();
+
+      // APPEND ELEMENTS
       burgerIngredientsList.appendChild(li);
+      li.appendChild(input);
+      li.appendChild(label);
     });
 
 
