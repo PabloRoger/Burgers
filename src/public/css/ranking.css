@@ -23,3 +23,9 @@
     display: none;
   }
 }
+
+.burgers-rank a{
+  color: red;
+  font-weight: 500;
+  text-decoration: none;
+}

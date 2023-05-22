@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DISPLAY BURGER DETAILS
     burgerName.innerText = burger.burger_name;
-    burgerImg.setAttribute("src", `/img/${burger.picture}`);
+    burgerImg.setAttribute("src", `/img/user_burger/${burger.picture}`);
     burgerDifficulty.innerText = difficulty;
     burgerNumIngredients.innerText = allIngredients.length;
     burgerTimeToPrepare.innerText = `${burger.time_to_prepare} minutos`;

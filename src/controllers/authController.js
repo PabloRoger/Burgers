@@ -72,7 +72,13 @@ const registerUser = (req, res) => {
 
 
 const updateUser = (req, res) => {
-  const { user_id, picture, username, email, password, new_password } = req.body;
+  const { user_id, username, email, password, new_password } = req.body;
+  const uploadedPicture = req.file ? req.file.filename : null;
+  console.log(uploadedPicture)
+
+  if (req.fileValidationError) {
+    return res.status(400).send({ error: req.fileValidationError });
+  }
 
   authService.getUserById(user_id, (error, user) => {
     if (error) {
@@ -87,7 +93,7 @@ const updateUser = (req, res) => {
       }
 
       const changes = {
-        picture: picture,
+        picture: uploadedPicture,
         username: username,
         email: email,
         // if new_password is provided, hash it, otherwise keep the old password
@@ -105,6 +111,7 @@ const updateUser = (req, res) => {
     });
   });
 };
+
 
 
 

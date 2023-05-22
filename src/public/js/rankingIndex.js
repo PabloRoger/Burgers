@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Update the DOM
-            document.querySelector(`#foto-ranking-${index + 1}`).src = `/img/${burger.picture}`;
+            document.querySelector(`#burger-${index + 1}`).href = `/burger/${burger.burger_id}`;
+
+            document.querySelector(`#foto-ranking-${index + 1}`).src = `/img/user_burger/${burger.picture}`;
             document.querySelector(`#nombre-ranking-${index + 1}`).textContent = burger.burger_name;
             document.querySelector(`#valoraciones-ranking-${index + 1}`).textContent = `${data[index].rating} valoraciones`;
 

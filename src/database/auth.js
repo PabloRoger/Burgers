@@ -68,7 +68,7 @@ function registerUser(userData, callback) {
     let hashedPassword = await bcrypt.hash(userData.password, 8);
 
     const query = 'INSERT INTO User SET ?';
-    connection.query(query, { username: userData.username, email: userData.email, password: hashedPassword }, (error, result) => {
+    connection.query(query, { username: userData.username, email: userData.email, picture: "user.png" , password: hashedPassword }, (error, result) => {
       if (error) {
         callback(error, null);
         return;

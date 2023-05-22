@@ -159,9 +159,6 @@
   }
 }
 
-
-
-
 /* FIN SECCION - QUE ES? */
 
 /* INICIO SECCION - RANKING */
@@ -268,6 +265,7 @@
   text-align: left;
 
   display: inline-block;
+  text-align: center;
 }
 
 .ranking-especs p{
@@ -305,6 +303,8 @@
 
   display: block;
   width: 150px;
+
+  text-align: center;
 }
 
 .ranking-boton a:hover{
@@ -314,6 +314,16 @@
 
 .ranking-responsive{
   text-align: center;
+}
+
+.link-to-burger {
+  color: red;
+  text-decoration: none;
+}
+
+.link-to-burger:hover {
+  filter: brightness(0.9);
+  text-decoration: none;
 }
 
 
@@ -531,6 +541,8 @@
 
   display: block;
   width: 110px;
+
+  text-align: center;
 }
 
 @media (max-width: 1050px) {
