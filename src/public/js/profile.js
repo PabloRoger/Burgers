@@ -14,7 +14,7 @@
           <img src="/img/user_profile/${user.picture}" alt="profile picture" class="profile-picture">
           <div class="form-group">
             <label for="profilePicture">Nueva foto de perfil</label>
-            <input type="file" id="profilePicture" class="form-control-file">
+            <input type="file" id="profilePicture" class="form-control-file" accept=".jpg,.jpeg">
           </div>
         `;
       } else {
@@ -22,7 +22,7 @@
           <img src="/img/user_profile/user.png" alt="profile picture" class="profile-picture">
           <div class="form-group">
             <label for="profilePicture">Foto de perfil</label>
-            <input type="file" id="profilePicture" class="form-control-file">
+            <input type="file" id="profilePicture" class="form-control-file" accept=".jpg,.jpeg">
           </div>
         `;
       }
@@ -44,6 +44,8 @@ form.addEventListener("submit", function(event) {
   const email = document.getElementById("user-email").value;
   const password = document.getElementById("password").value;
   const newPassword = document.getElementById("newPassword").value;
+
+  console.log(profilePicture);
 
   const formData = new FormData();
   formData.append("user_id", USER_ID);

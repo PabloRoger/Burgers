@@ -11,11 +11,26 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     const userId = req.params.userId; // Este será el parámetro desde la ruta
-    cb(null, `user_${userId}.jpg`);
+    // el nombre del archivo será user_<userId>.<extensión>
+    cb(null, `user_${userId}${path.extname(file.originalname)}`);
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 5 * 1024 * 1024 },  // 5MB
+    fileFilter: function (req, file, cb) {
+        const filetypes = /jpeg|jpg/;
+        const mimetype = filetypes.test(file.mimetype);
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+
+        cb(new Error(`Solo se permiten archivos de tipo .jpeg/.jpg`));
+    }
+});
 
 router
     .get("/auth/users", authController.getAllUsers)
