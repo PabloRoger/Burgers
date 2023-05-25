@@ -1,3 +1,58 @@
 .burger-maker{
   padding: 150px 0px;
 }
+.add-ingredient{
+  margin-top: 5px;
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+  border-radius: 5px;
+  filter: opacity(0.3);
+  transition: 0.3s;
+}
+
+.add-ingredient:hover{
+  filter: opacity(1);
+  transition: 0.3s;
+}
+
+#ingredient-form label{
+  color: red;
+  font-size: 18px;
+}
+
+#dificultad{
+  width: 25px;
+  height: 25px;
+}
+
+#dificultad:checked{
+  background-color: red !important;
+}
+
+#burger-images {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#burger-images img {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  z-index: 1;
+}
+
+#burger-images img:first-child {
+  z-index: 2;
+}
+
+.ingredient{
+  margin-left: 50px;
+}
+
+.newOption{
+  display: flex;
+  padding: 0px;
+}

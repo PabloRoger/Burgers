@@ -1,5 +1,6 @@
 const burgersService = require("../services/burgerService");
 
+// function to get all burgers
 const getAllBurgers = (req, res) => {
   const getAllBurgers = burgersService.getAllBurgers((error, result) => {
     if (error) {
@@ -13,6 +14,8 @@ const getAllBurgers = (req, res) => {
   return getAllBurgers;
 };
 
+
+// function to get a burger by id
 const getBurgerById = (req, res) => {
   const { id } = req.params;
 
@@ -33,6 +36,23 @@ const getBurgerById = (req, res) => {
   return getOneBurger;
 };
 
+
+// function to get the ingredients of burgers
+const getIngredients = (req, res) => {
+  const getIngredients = burgersService.getIngredients((error, result) => {
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
+  });
+
+  return getIngredients;
+};
+
+
+// function to get the ranking of burgers
 const getRanking = (req, res) => {
   const getRanking = burgersService.getRanking((error, result) => {
     if (error) {
@@ -47,6 +67,7 @@ const getRanking = (req, res) => {
 };
 
 
+// function to create a burger
 const createBurger = (req, res) => {
   const { body } = req;
 
@@ -91,6 +112,8 @@ const createBurger = (req, res) => {
   return createdBurger;
 };
 
+
+// function to update a burger
 const updateBurger = (req, res) => {
   const { body } = req;
   const burger_id = req.params.id;
@@ -112,6 +135,8 @@ const updateBurger = (req, res) => {
   return updatedBurger;
 };
 
+
+// function to delete a burger
 const deleteBurger = (req, res) => {
   const burger_id = req.params.id;
 
@@ -132,9 +157,11 @@ const deleteBurger = (req, res) => {
   return deletedBurger;
 };
 
+
 module.exports = {
     getAllBurgers,
     getBurgerById,
+    getIngredients,
     getRanking,
     createBurger,
     updateBurger,

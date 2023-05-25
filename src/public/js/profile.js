@@ -45,7 +45,6 @@ form.addEventListener("submit", function(event) {
   const password = document.getElementById("password").value;
   const newPassword = document.getElementById("newPassword").value;
 
-  console.log(profilePicture);
 
   const formData = new FormData();
   formData.append("user_id", USER_ID);

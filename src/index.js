@@ -72,14 +72,15 @@ app.get("/ranking", (req, res) => {
 
 // pagina de crear hamburguesa solo para usuarios logueados
 app.get("/crear", (req, res) => {
-    if (!req.session.user) {
-        res.redirect("/login");
-        return;
-    }
+    // if (!req.session.user) {
+    //     res.redirect("/login");
+    //     return;
+    // }
     res.render("crear", {
         session: req.session,
         title: "Crear"
     });
+
 });
 
 

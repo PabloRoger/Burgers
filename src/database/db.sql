@@ -56,13 +56,46 @@ CREATE TABLE IF NOT EXISTS Burgers_in_restaurant (
   FOREIGN KEY (burger_id) REFERENCES Burger(burger_id)
 );
 
+-- CREATE TABLE Ingredients
+CREATE TABLE IF NOT EXISTS Ingredients (
+  ingredient_id INT PRIMARY KEY AUTO_INCREMENT,
+  ingredient_name VARCHAR(255) NOT NULL,
+  ingredient_type VARCHAR(255) NOT NULL
+);
+
+-- INSERT Ingredients
+INSERT INTO Ingredients (ingredient_name, ingredient_type) VALUES
+('Pan normal', 'Bread'),
+('Pan brioche', 'Bread'),
+('Pan integral', 'Bread'),
+('Lechuga', 'Vegetable'),
+('Tomate', 'Vegetable'),
+('Cebolla', 'Vegetable'),
+('Pepinillos', 'Vegetable'),
+('Cheddar', 'Cheese'),
+('Gouda', 'Cheese'),
+('Queso azul', 'Cheese'),
+('Ketchup', 'Sauce'),
+('Mayonesa', 'Sauce'),
+('Mostaza', 'Sauce'),
+('Barbacoa', 'Sauce'),
+('Cerdo', 'Meat'),
+('Pollo', 'Meat'),
+('Vaca', 'Meat'),
+('Cebolla crujiente', 'Topping'),
+('Huevo', 'Topping'),
+('Bacon', 'Topping');
+
+
 -- CREATE USER
 -- -----------
 
 INSERT INTO User (username, email, picture, password)
 VALUES
-('admin', 'admin@gmail.com', 'profile_1.jpg','admin'),
-('pablo', 'pablo@gmail.com', 'profile_2.jpg','123');
+('admin', 'admin@gmail.com', 'profile_1.jpg','123'),
+('pablo', 'pablo@gmail.com', 'profile_2.jpg','$2a$08$7O2KIy34D3PDl85emvHZtOdc658BpISxM3OBKpffjwceAJhloS1om');
+-- COMMENT password: 123
+
 
 -- INSERTS BURGERS AND RESTAURANTS
 -- -------------------------------

@@ -10,6 +10,11 @@ const getBurgerById = (burgerId, callback) => {
   return oneBurger;
 }
 
+const getIngredients = (callback) => {
+  const ingredients = burger.getIngredients(callback);
+  return ingredients;
+}
+
 const getRanking = (callback) => {
   const ranking = burger.getRanking(callback);
   return ranking;
@@ -49,6 +54,7 @@ const deleteBurger = (burgerId, callback) =>{
 module.exports = {
   getAllBurgers,
   getBurgerById,
+  getIngredients,
   getRanking,
   createBurger,
   updateBurger,

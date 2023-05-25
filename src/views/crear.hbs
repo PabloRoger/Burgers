@@ -11,70 +11,117 @@
         </div>
         <!-- Columna de ingredientes -->
         <div class="col-lg-4">
-          <h2>Ingredientes</h2>
           <form id="ingredient-form">
             <div class="form-group">
               <label for="pan">Pan</label>
+
               <select class="form-control" id="pan">
-                <!-- Opciones de pan -->
+                <option value="#">Selecciona un pan</option>
+                <option value="bread-normal">Pan Normal</option>
+                <option value="bread-integral">Pan Integral</option>
+                <option value="bread-brioche">Pan brioche</option>
               </select>
+
             </div>
-            <div class="form-group">
+            <div class="form-group" id="meat-list">
               <label for="carne">Carne</label>
               <select class="form-control" id="carne">
-                <!-- Opciones de carne -->
+                <option value="#">Selecciona una carne</option>
+                <option value="meat-cerdo">Cerdo</option>
+                <option value="meat-pollo">Pollo</option>
+                <option value="meat-vaca">Vaca</option>
               </select>
+                <button id="add-meat" class="add-ingredient">+</button>
             </div>
-            <div class="form-group">
+
+            <div class="form-group" id="sauce-list">
               <label for="salsa">Salsa</label>
               <select class="form-control" id="salsa">
                 <!-- Opciones de salsa -->
+                <option value="#">Selecciona una salsa</option>
+                <option value="sauce-barbacoa">Salsa barbacoa</option>
+                <option value="sauce-mayonesa">Salsa mayonesa</option>
+                <option value="sauce-mostaza">Salsa mostaza</option>
+                <option value="sauce-ketchup">Salsa ketchup</option>
               </select>
+              <button id="add-sauce" class="add-ingredient">+</button>
             </div>
-            <div class="form-group">
+
+            <div class="form-group" id="cheese-list">
               <label for="queso">Queso</label>
               <select class="form-control" id="queso">
-                <!-- Opciones de queso -->
+                <option value="#">Selecciona un queso</option>
+                <option value="cheese-cheddar">Queso cheddar</option>
+                <option value="cheese-azul">Queso azul</option>
+                <option value="cheese-gouda">Queso gouda</option>
               </select>
+              <button id="add-cheese" class="add-ingredient">+</button>
             </div>
-            <div class="form-group">
+
+            <div class="form-group" id="vegetable-list">
               <label for="verduras">Verduras</label>
               <select class="form-control" id="verduras">
-                <!-- Opciones de verduras -->
+                <option value="#">Selecciona una verdura</option>
+                <option value="vegetable-lechuga">Lechuga</option>
+                <option value="vegetable-tomate">Tomate</option>
+                <option value="vegetable-cebolla">Cebolla</option>
+                <option value="vegetable-pepinillo">Pepinillo</option>
               </select>
+              <button id="add-vegetable" class="add-ingredient">+</button>
+
             </div>
-            <div class="form-group">
+            <div class="form-group" id="topping-list">
               <label for="toppings">Toppings</label>
               <select class="form-control" id="toppings">
-                <!-- Opciones de toppings -->
+                <option value="#">Selecciona un topping</option>
+                <option value="topping-huevo">Huevo</option>
+                <option value="topping-bacon">Bacon</option>
+                <option value="topping-cebolla-crujiente">Cebolla crujiente</option>
               </select>
+              <button id="add-topping" class="add-ingredient">+</button>
             </div>
           </form>
         </div>
 
         <!-- Columna de imágenes -->
         <div class="col-lg-4">
+          <div id="burger-images" class="text-center">
           <h2>Tu Hamburguesa</h2>
-          <div id="burger-images">
+          <div>
+            <img id="pan" src="/img/create_burger/pan-normal.png" alt="Pan normal" width="350px">
+            <img class="ingredient" src="/img/create_burger/toppings-bacon.png" alt="" width="250px">
+            <img class="ingredient" src="/img/create_burger/verdura-cebolla.png" alt="" width="250px">
+            <img class="ingredient" src="/img/create_burger/queso-cheddar.png" alt="" width="250px">
+            <img class="ingredient" src="/img/create_burger/carne-vaca.png" alt="" width="200px">
+            <img class="ingredient" src="/img/create_burger/salsa-barbacoa.png" alt="" width="100px">
+          </div>
             <!-- Imágenes de la hamburguesa -->
-            <img src="/img/portada_header.png" alt="Pan Superior" id="burger-top" width="350px">
           </div>
         </div>
 
         <!-- Columna de resumen y formulario -->
         <div class="col-lg-4">
-          <h2>Resumen y Creación</h2>
           <div id="burger-summary">
             <!-- Resumen de la hamburguesa -->
           </div>
           <form id="create-burger-form">
             <div class="form-group">
               <label for="dificultad">Dificultad</label>
-              <input type="text" class="form-control" id="dificultad">
+              <div>
+                <label class="btn btn-outline-danger">
+                  <input type="radio" name="dificultad" value="1"> Fácil
+                </label>
+                <label class="btn btn-outline-danger">
+                  <input type="radio" name="dificultad" value="2"> Media
+                </label>
+                <label class="btn btn-outline-danger">
+                  <input type="radio" name="dificultad" value="3"> Difícil
+                </label>
+              </div>
             </div>
             <div class="form-group">
               <label for="tiempo">Tiempo</label>
-              <input type="text" class="form-control" id="tiempo">
+              <input type="number" class="form-control" id="tiempo" placeholder="Max: 120 minutos" min="0" max="120">
             </div>
             <div class="form-group">
               <label for="descripcion">Descripción</label>
@@ -94,3 +141,5 @@
     {{> footer}}
   </footer>
 </body>
+
+<script src="/js/crearHamburguesa.js"></script>
