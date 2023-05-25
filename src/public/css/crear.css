@@ -56,3 +56,29 @@
   display: flex;
   padding: 0px;
 }
+
+#bread-image{
+  width: 350px;
+}
+
+#topping-image{
+  width: 200px;
+}
+
+#vegetable-image{
+  width: 250px;
+}
+
+#cheese-image{
+  width: 250px;
+}
+
+#meat-image{
+  width: 200px;
+}
+
+#sauce-image{
+  width: 100px;
+  margin-left: 110px;
+  z-index: 5 !important;
+}

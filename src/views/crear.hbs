@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/crear.css">
+
 <body>
   <header>
     {{> navbar}}
@@ -15,7 +16,7 @@
             <div class="form-group">
               <label for="pan">Pan</label>
 
-              <select class="form-control" id="pan">
+              <select class="form-control" id="bread">
                 <option value="#">Selecciona un pan</option>
                 <option value="bread-normal">Pan Normal</option>
                 <option value="bread-integral">Pan Integral</option>
@@ -23,33 +24,23 @@
               </select>
 
             </div>
-            <div class="form-group" id="meat-list">
-              <label for="carne">Carne</label>
-              <select class="form-control" id="carne">
-                <option value="#">Selecciona una carne</option>
-                <option value="meat-cerdo">Cerdo</option>
-                <option value="meat-pollo">Pollo</option>
-                <option value="meat-vaca">Vaca</option>
+
+
+            <div class="form-group" id="topping-list">
+              <label for="toppings">Toppings</label>
+              <select class="form-control" id="topping">
+                <option value="#">Selecciona un topping</option>
+                <option value="topping-huevo">Huevo</option>
+                <option value="topping-bacon">Bacon</option>
+                <option value="topping-cebolla-crujiente">Cebolla crujiente</option>
               </select>
-                <button id="add-meat" class="add-ingredient">+</button>
+              <button id="add-topping" class="add-ingredient">+</button>
             </div>
 
-            <div class="form-group" id="sauce-list">
-              <label for="salsa">Salsa</label>
-              <select class="form-control" id="salsa">
-                <!-- Opciones de salsa -->
-                <option value="#">Selecciona una salsa</option>
-                <option value="sauce-barbacoa">Salsa barbacoa</option>
-                <option value="sauce-mayonesa">Salsa mayonesa</option>
-                <option value="sauce-mostaza">Salsa mostaza</option>
-                <option value="sauce-ketchup">Salsa ketchup</option>
-              </select>
-              <button id="add-sauce" class="add-ingredient">+</button>
-            </div>
 
             <div class="form-group" id="cheese-list">
               <label for="queso">Queso</label>
-              <select class="form-control" id="queso">
+              <select class="form-control" id="cheese">
                 <option value="#">Selecciona un queso</option>
                 <option value="cheese-cheddar">Queso cheddar</option>
                 <option value="cheese-azul">Queso azul</option>
@@ -58,9 +49,22 @@
               <button id="add-cheese" class="add-ingredient">+</button>
             </div>
 
+            <div class="form-group" id="meat-list">
+              <label for="carne">Carne</label>
+              <select class="form-control" id="meat">
+                <option value="#">Selecciona una carne</option>
+                <option value="meat-cerdo">Cerdo</option>
+                <option value="meat-pollo">Pollo</option>
+                <option value="meat-vaca">Vaca</option>
+              </select>
+              <button id="add-meat" class="add-ingredient">+</button>
+            </div>
+
+
+
             <div class="form-group" id="vegetable-list">
               <label for="verduras">Verduras</label>
-              <select class="form-control" id="verduras">
+              <select class="form-control" id="vegetable">
                 <option value="#">Selecciona una verdura</option>
                 <option value="vegetable-lechuga">Lechuga</option>
                 <option value="vegetable-tomate">Tomate</option>
@@ -70,15 +74,18 @@
               <button id="add-vegetable" class="add-ingredient">+</button>
 
             </div>
-            <div class="form-group" id="topping-list">
-              <label for="toppings">Toppings</label>
-              <select class="form-control" id="toppings">
-                <option value="#">Selecciona un topping</option>
-                <option value="topping-huevo">Huevo</option>
-                <option value="topping-bacon">Bacon</option>
-                <option value="topping-cebolla-crujiente">Cebolla crujiente</option>
+
+            <div class="form-group" id="sauce-list">
+              <label for="salsa">Salsa</label>
+              <select class="form-control" id="sauce">
+                <!-- Opciones de salsa -->
+                <option value="#">Selecciona una salsa</option>
+                <option value="sauce-barbacoa">Salsa barbacoa</option>
+                <option value="sauce-mayonesa">Salsa mayonesa</option>
+                <option value="sauce-mostaza">Salsa mostaza</option>
+                <option value="sauce-ketchup">Salsa ketchup</option>
               </select>
-              <button id="add-topping" class="add-ingredient">+</button>
+              <button id="add-sauce" class="add-ingredient">+</button>
             </div>
           </form>
         </div>
@@ -86,15 +93,15 @@
         <!-- Columna de imágenes -->
         <div class="col-lg-4">
           <div id="burger-images" class="text-center">
-          <h2>Tu Hamburguesa</h2>
-          <div>
-            <img id="pan" src="/img/create_burger/pan-normal.png" alt="Pan normal" width="350px">
-            <img class="ingredient" src="/img/create_burger/toppings-bacon.png" alt="" width="250px">
-            <img class="ingredient" src="/img/create_burger/verdura-cebolla.png" alt="" width="250px">
-            <img class="ingredient" src="/img/create_burger/queso-cheddar.png" alt="" width="250px">
-            <img class="ingredient" src="/img/create_burger/carne-vaca.png" alt="" width="200px">
-            <img class="ingredient" src="/img/create_burger/salsa-barbacoa.png" alt="" width="100px">
-          </div>
+            <h2>Tu Hamburguesa</h2>
+            <div>
+              <img id="bread-image" src="/img/create_burger/bread-normal.png">
+              <img id="topping-image" class="ingredient" src="">
+              <img id="cheese-image" class="ingredient" src="">
+              <img id="meat-image" class="ingredient" src="">
+              <img id="vegetable-image" class="ingredient" src="">
+              <img id="sauce-image" class="ingredient" src="">
+            </div>
             <!-- Imágenes de la hamburguesa -->
           </div>
         </div>

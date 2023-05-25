@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const ingredientTypes = [
-    { type: 'Meat', id: 'meat-list' },
-    { type: 'Sauce', id: 'sauce-list' },
-    { type: 'Cheese', id: 'cheese-list' },
-    { type: 'Vegetable', id: 'vegetable-list' },
-    { type: 'Topping', id: 'topping-list' }
+    { type: 'Topping', id: 'topping-list', imageId: 'topping-image' },
+    { type: 'Cheese', id: 'cheese-list', imageId: 'cheese-image' },
+    { type: 'Meat', id: 'meat-list', imageId: 'meat-image' },
+    { type: 'Vegetable', id: 'vegetable-list', imageId: 'vegetable-image' },
+    { type: 'Sauce', id: 'sauce-list', imageId: 'sauce-image' }
   ];
+
+  let imageOffset = 220; // Variable para el desplazamiento vertical
 
   ingredientTypes.forEach(ingredientType => {
     const addButton = document.getElementById(`add-${ingredientType.type.toLowerCase()}`);
@@ -22,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         addButton.style.display = 'block';
       } else {
         if (counter < 1) {
-          // Add the select and the remove button
+          /**
+           * Add the select and the remove button
+           */
           const ingredientList = document.getElementById(ingredientType.id);
           const newSelect = document.createElement('select');
           newSelect.classList.add('form-control');
@@ -31,11 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const defaultOption = document.createElement('option');
           defaultOption.innerHTML = `Seleccione ingrediente`;
 
-          // Add the options
+          /**
+           * Fetch the ingredients from the API
+           * and add them to the select
+           */
           fetch('/api/v1/ingredients')
             .then(response => response.json())
             .then(data => {
               const ingredients = data.filter(ingredient => ingredient.ingredient_type === ingredientType.type);
+
               ingredients.forEach(ingredient => {
                 const option = document.createElement('option');
                 option.innerHTML = ingredient.ingredient_name;
@@ -78,6 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
           addButton.style.display = 'none';
         }
       }
+    });
+
+    const ingredientSelect = document.getElementById(ingredientType.type.toLowerCase());
+    const ingredientImage = document.getElementById(`${ingredientType.imageId}`);
+    const prevImageOffset = imageOffset - 100;
+    ingredientImage.style.transform = `translateY(${prevImageOffset}px)`;
+
+    // Incrementar el desplazamiento vertical
+    imageOffset += 90;
+
+    ingredientSelect.addEventListener('change', (event) => {
+      const ingredientValue = event.target.value;
+      ingredientImage.src = `/img/create_burger/${ingredientValue}.png`;
     });
   });
 });
