@@ -37,6 +37,28 @@ const getBurgerById = (req, res) => {
 };
 
 
+// function to get burgers by user id
+const getBurgersByUserId = (req, res) => {
+  const { id } = req.params;
+
+  if(!id){
+    res.status(400).send("Missing required information");
+    return;
+  }
+
+  const getBurgersByUserId = burgersService.getBurgersByUserId(id, (error, result) => {
+    if (error) {
+      res.status(500).send({ error: error.message })
+      return;
+    }
+
+    res.send(result);
+  });
+
+  return getBurgersByUserId;
+};
+
+
 // function to get the ingredients of burgers
 const getIngredients = (req, res) => {
   const getIngredients = burgersService.getIngredients((error, result) => {
@@ -167,6 +189,7 @@ module.exports = {
     getAllBurgers,
     getBurgerById,
     getIngredients,
+    getBurgersByUserId,
     getRanking,
     createBurger,
     updateBurger,

@@ -29,3 +29,19 @@
   font-weight: 500;
   text-decoration: none;
 }
+
+
+.btn-acceder a{
+  margin: 0px;
+  padding: 12px;
+
+  font-size: 16px;
+  border-radius: 20px;
+
+  text-decoration: none;
+
+  background-color: white;
+  color: red;
+
+  font-weight: 500;
+}

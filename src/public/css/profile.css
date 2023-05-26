@@ -17,3 +17,13 @@
   background-color: #d0d0d0;
   object-fit: cover;
 }
+
+.image-wrapper {
+  height: 225px;
+  overflow: hidden;
+}
+
+
+#burgersList{
+  margin-bottom: 230px;
+}

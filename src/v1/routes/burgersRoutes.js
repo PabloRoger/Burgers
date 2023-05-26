@@ -5,20 +5,19 @@ const burgersController = require("../../controllers/burgerController");
 const multer = require('multer');
 const path = require('path');
 
+// Variable externa para almacenar el valor de index
+let index = 0;
+
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, path.join(__dirname, '../../public/img/user_burger/'));
-    },
-    filename: function(req, file, cb) {
-        // Obtén el valor actual de index almacenado en el objeto req
-        let index = req.index || 0;
-        index++;
-        // Actualiza el valor de index en el objeto req
-        req.index = index;
-        // Genera el nombre del archivo con el valor actualizado de index
-        cb(null, `burger_${index}${path.extname(file.originalname)}`);
-    }
+  destination: function(req, file, cb) {
+    cb(null, path.join(__dirname, '../../public/img/user_burger/'));
+  },
+  filename: function(req, file, cb) {
+    index++;
+    cb(null, `burger_${index}${path.extname(file.originalname)}`);
+  }
 });
+
 
 const upload = multer({
     storage: storage,
@@ -43,6 +42,7 @@ const upload = multer({
 router
     .get("/burgers", burgersController.getAllBurgers)
     .get("/burger/:id", burgersController.getBurgerById)
+    .get("/burger/user/:id", burgersController.getBurgersByUserId)
     .get("/ranking", burgersController.getRanking)
     .get("/ingredients", burgersController.getIngredients)
     .post("/create", upload.single('picture'), burgersController.createBurger)

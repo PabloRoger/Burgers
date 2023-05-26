@@ -27,11 +27,19 @@ function getIngredients(callback) {
   });
 }
 
-
 function getRanking(callback) {
   const query = 'SELECT * FROM Ranking ORDER BY rating DESC';
 
   connection.query(query, (error, results) => {
+    // MANAGE ERROR
+    error ? callback(error, null) : callback(null, results);
+  });
+}
+
+function getBurgersByUserId(userId, callback) {
+  const query = 'SELECT * FROM Burger WHERE user_id = ?';
+
+  connection.query(query, userId, (error, results) => {
     // MANAGE ERROR
     error ? callback(error, null) : callback(null, results);
   });
@@ -70,6 +78,7 @@ module.exports = {
   getBurgerById,
   getIngredients,
   getRanking,
+  getBurgersByUserId,
   createBurger,
   updateBurger,
   deleteBurger

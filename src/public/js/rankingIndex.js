@@ -14,12 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
           burgerDetails.forEach((burger, index) => {
 
             // Count the ingredient
-            const ingredientTypes = ['meat', 'cheese', 'sauce', 'vegetable', 'toppings'];
+            const ingredientTypes = ['bread', 'meat', 'cheese', 'sauce', 'vegetable', 'toppings'];
             let ingredientCount = 0;
 
             ingredientTypes.forEach((ingredientType) => {
               const ingredients = burger[`${ingredientType}_type`].split(',');
-              ingredientCount += ingredients.length;
+
+              // If the first element is not empty, push all the ingredients
+              if (ingredients[0] !== ''){
+                ingredientCount += ingredients.length;
+              }
             });
 
             // Update the DOM

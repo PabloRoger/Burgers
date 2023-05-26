@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ingredientTypes.forEach((ingredientType) => {
       const ingredients = burger[`${ingredientType}_type`].split(',');
-      allIngredients.push(...ingredients);
+
+      // If the first element is not empty, push all the ingredients
+      if (ingredients[0] !== '') allIngredients.push(...ingredients);
     });
 
     return allIngredients;
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // GET ELEMENTS
     const burgerName = document.getElementById("burger-name");
     const burgerImg = document.getElementById("burger-img");
+    const burgerAuthor = document.getElementById("burger-author");
     const burgerDifficulty = document.getElementById("burger-difficulty");
     const burgerNumIngredients = document.getElementById("burger-num-ingredients");
     const burgerIngredientsList = document.getElementById("burger-ingredients-list");
@@ -50,6 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // GET BURGER DETAILS
     const allIngredients = getAllIngredients(burger);
     const difficulty = setDifficulty(burger.difficulty);
+
+    fetch(`/api/v1/auth/user/${burger.user_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const user = data;
+        const username = user.username;
+        // First letter to uppercase
+        const usernameCapitalized = username.charAt(0).toUpperCase() + username.slice(1);
+        burgerAuthor.innerText = usernameCapitalized;
+      })
+      .catch((error) => {
+        console.error('Error al obtener los detalles del usuario: ', error);
+      });
 
     // DISPLAY BURGER DETAILS
     burgerName.innerText = burger.burger_name;

@@ -1,4 +1,4 @@
-.burger-author, .product-difficulty, .product-num-ingredient, .product-time{
+.product-author, .product-difficulty, .product-num-ingredient, .product-time{
   display: block ruby;
 }
 
