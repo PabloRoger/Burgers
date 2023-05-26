@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { type: 'Sauce', id: 'sauce-list', imageId: 'sauce-image' }
   ];
 
-  let imageOffset = 220; // Variable para el desplazamiento vertical
+  let imageOffset = 220; // Variable for the vertical offset of the images
 
   ingredientTypes.forEach(ingredientType => {
     const addButton = document.getElementById(`add-${ingredientType.type.toLowerCase()}`);
@@ -101,4 +101,46 @@ document.addEventListener('DOMContentLoaded', () => {
       ingredientImage.src = `/img/create_burger/${ingredientValue}.png`;
     });
   });
+});
+
+window.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const selectIngredient = (ingredient) => {
+    const select = document.getElementById(ingredient);
+    const selectedOption = select.options[select.selectedIndex];
+    const ingredient_type = selectedOption.textContent;
+    return ingredient_type;
+  }
+
+  const burger_name = document.getElementById('burger-name').value;
+
+  const bread_type = selectIngredient('bread');
+  const meat_type = selectIngredient('meat');
+  const cheese_type = selectIngredient('cheese');
+  const sauce_type = selectIngredient('sauce');
+  const vegetable_type = selectIngredient('vegetable');
+  const toppings_type = selectIngredient('topping');
+
+  const description = document.getElementById('description').value;
+  const picture = document.getElementById('picture').files[0];
+  const time_to_prepare = document.getElementById('time-to-prepare').value;
+  const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+
+  let burger = {
+    burger_name : burger_name,
+    bread_type : bread_type,
+    meat_type : meat_type,
+    cheese_type : cheese_type,
+    sauce_type : sauce_type,
+    vegetable_type : vegetable_type,
+    toppings_type : toppings_type,
+    description : description,
+    picture : picture, // AÑADIR
+    time_to_prepare : time_to_prepare,
+    difficulty : difficulty,
+  }
+
+  console.log(burger);
+
 });

@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../../controllers/authController");
+
 const multer = require('multer');
 const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, path.join(__dirname, '../../public/img/user_profile/'));
-    //cb(null, '/img/user_profile/');
   },
   filename: function(req, file, cb) {
-    const userId = req.params.userId; // Este será el parámetro desde la ruta
-    // el nombre del archivo será user_<userId>.<extensión>
+    const userId = req.params.userId;
     cb(null, `user_${userId}${path.extname(file.originalname)}`);
   }
 });
@@ -21,9 +20,13 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 },  // 5MB
     fileFilter: function (req, file, cb) {
         const filetypes = /jpeg|jpg/;
+        // mimetype is the type of the file (image/jpeg, image/png, etc)
         const mimetype = filetypes.test(file.mimetype);
+        // extname is the extension of the file (.jpeg, .png, etc)
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
 
+        // if minetype and extname are true, continue with the upload
+        // cb(null, true) means no error, and continue with the upload
         if (mimetype && extname) {
             return cb(null, true);
         }

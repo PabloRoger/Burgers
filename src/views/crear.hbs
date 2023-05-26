@@ -7,7 +7,7 @@
   <main>
     <div class="container burger-maker">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 text-center">
           <h1>Crear Hamburguesa</h1>
         </div>
         <!-- Columna de ingredientes -->
@@ -18,8 +18,8 @@
 
               <select class="form-control" id="bread">
                 <option value="#">Selecciona un pan</option>
-                <option value="bread-normal">Pan Normal</option>
-                <option value="bread-integral">Pan Integral</option>
+                <option value="bread-normal">Pan normal</option>
+                <option value="bread-integral">Pan integral</option>
                 <option value="bread-brioche">Pan brioche</option>
               </select>
 
@@ -42,9 +42,9 @@
               <label for="queso">Queso</label>
               <select class="form-control" id="cheese">
                 <option value="#">Selecciona un queso</option>
-                <option value="cheese-cheddar">Queso cheddar</option>
-                <option value="cheese-azul">Queso azul</option>
-                <option value="cheese-gouda">Queso gouda</option>
+                <option value="cheese-cheddar">Cheddar</option>
+                <option value="cheese-azul">Azul</option>
+                <option value="cheese-gouda">Gouda</option>
               </select>
               <button id="add-cheese" class="add-ingredient">+</button>
             </div>
@@ -93,7 +93,6 @@
         <!-- Columna de imágenes -->
         <div class="col-lg-4">
           <div id="burger-images" class="text-center">
-            <h2>Tu Hamburguesa</h2>
             <div>
               <img id="bread-image" src="/img/create_burger/bread-normal.png">
               <img id="topping-image" class="ingredient" src="">
@@ -102,7 +101,6 @@
               <img id="vegetable-image" class="ingredient" src="">
               <img id="sauce-image" class="ingredient" src="">
             </div>
-            <!-- Imágenes de la hamburguesa -->
           </div>
         </div>
 
@@ -113,32 +111,38 @@
           </div>
           <form id="create-burger-form">
             <div class="form-group">
-              <label for="dificultad">Dificultad</label>
+              <label for="difficulty">Dificultad</label>
               <div>
                 <label class="btn btn-outline-danger">
-                  <input type="radio" name="dificultad" value="1"> Fácil
+                  <input type="radio" name="difficulty" value="1"> Fácil
                 </label>
                 <label class="btn btn-outline-danger">
-                  <input type="radio" name="dificultad" value="2"> Media
+                  <input type="radio" name="difficulty" value="2"> Media
                 </label>
                 <label class="btn btn-outline-danger">
-                  <input type="radio" name="dificultad" value="3"> Difícil
+                  <input type="radio" name="difficulty" value="3"> Difícil
                 </label>
               </div>
             </div>
             <div class="form-group">
               <label for="tiempo">Tiempo</label>
-              <input type="number" class="form-control" id="tiempo" placeholder="Max: 120 minutos" min="0" max="120">
+              <input type="number" class="form-control" id="time-to-prepare" placeholder="Max: 120 minutos" min="0" max="120">
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="burger-name" placeholder="Nombre">
             </div>
             <div class="form-group">
               <label for="descripcion">Descripción</label>
-              <textarea class="form-control" id="descripcion" rows="3"></textarea>
+              <textarea class="form-control" id="description" rows="3"></textarea>
             </div>
             <div class="form-group">
               <label for="imagen">Subir Imagen</label>
-              <input type="file" class="form-control-file" id="imagen">
+              <input type="file" class="form-control-file" id="picture">
             </div>
-            <button type="submit" class="btn btn-primary">Crear Hamburguesa</button>
+            <div class="form-group">
+              <button type="submit" class="btn btn-danger mt-4">Crear Hamburguesa</button>
+            </div>
           </form>
         </div>
       </div>

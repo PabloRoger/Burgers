@@ -48,8 +48,20 @@
   z-index: 2;
 }
 
+@media (max-width: 991px) {
+  #burger-images {
+    margin-bottom: 700px;
+  }
+}
+
 .ingredient{
   margin-left: 50px;
+}
+
+@media (max-width: 991px) {
+  .ingredient{
+    margin-left: 200px;
+  }
 }
 
 .newOption{
@@ -81,4 +93,37 @@
   width: 100px;
   margin-left: 110px;
   z-index: 5 !important;
+}
+
+@media (max-width: 991px) {
+  #bread-image{
+    margin-left: 150px;
+  }
+  #sauce-image{
+    margin-left: 260px;
+  }
+}
+
+@media (max-width: 767px) {
+  #bread-image{
+    margin-left: 90px;
+  }
+  #sauce-image{
+    margin-left: 200px;
+  }
+  .ingredient{
+    margin-left: 150px;
+  }
+}
+
+@media (max-width: 575px) {
+  #bread-image{
+    margin-left: 5%;
+  }
+  #sauce-image{
+    margin-left: 150px;
+  }
+  .ingredient{
+    margin-left: 100px;
+  }
 }

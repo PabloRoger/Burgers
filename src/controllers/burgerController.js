@@ -70,6 +70,7 @@ const getRanking = (req, res) => {
 // function to create a burger
 const createBurger = (req, res) => {
   const { body } = req;
+  const uploadedPicture = req.file ? req.file.filename : null;
 
   if(
     !body.user_id ||
@@ -81,7 +82,7 @@ const createBurger = (req, res) => {
     !body.vegetable_type ||
     !body.toppings_type ||
     !body.description ||
-    !body.picture
+    !uploadedPicture
     ){
     res.status(400).send("Missing required information");
     return;
@@ -97,7 +98,7 @@ const createBurger = (req, res) => {
     vegetable_type: body.vegetable_type,
     toppings_type: body.toppings_type,
     description: body.description,
-    picture: body.picture
+    picture: uploadedPicture
   };
 
   const createdBurger = burgersService.createBurger(newBurger, (error, result) => {
