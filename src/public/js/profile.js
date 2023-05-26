@@ -102,6 +102,11 @@ function showUserBurgers(USER_ID) {
         burgerTitle.classList.add("card-title");
         burgerTitle.textContent = burger.burger_name;
 
+        const removeButton = document.createElement("button");
+        removeButton.classList.add("btn", "btn-danger", "btn-sm", "float-right");
+        removeButton.textContent = "Eliminar";
+        removeButton.setAttribute("onclick", `removeButton(${burger.burger_id})`);
+
         burgerCardBody.appendChild(burgerTitle);
 
         burgerCard.appendChild(burgerImageWrapper);
@@ -111,6 +116,7 @@ function showUserBurgers(USER_ID) {
         burgerLink.href = `/burger/${burger.burger_id}`;
         burgerLink.appendChild(burgerCard);
 
+        column.appendChild(removeButton)
         column.appendChild(burgerLink);
         row.appendChild(column);
       });
@@ -125,6 +131,24 @@ function showUserBurgers(USER_ID) {
 
 }
 
+function removeButton (id) {
+  const URL = window.location.pathname;
+  const USER_ID = URL.split("/").pop();
+
+  if (confirm("¿Estás seguro de que quieres eliminar esta hamburguesa?")) {
+    fetch(`/api/v1/delete/${id}`, {
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.success);
+      if (data.success) {
+        showUserBurgers(USER_ID);
+      }
+    })
+    .catch(error => console.error("Error al eliminar la hamburguesa:", error));
+  }
+}
 
 
 const form = document.getElementById("profileForm");
@@ -148,14 +172,17 @@ form.addEventListener("submit", function(event) {
   formData.append("password", password);
   formData.append("new_password", newPassword);
 
-  fetch(`/api/v1/auth/user/update/${USER_ID}`, {
-    method: "PATCH",
-    body: formData
-  })
-    .then(response => {
-      console.log("Datos enviados correctamente: ", response);
+  if (confirm("¿Estás seguro de que quieres actualizar tus datos?")) {
+    fetch(`/api/v1/auth/user/update/${USER_ID}`, {
+      method: "PATCH",
+      body: formData
     })
-    .catch(error => {
-      console.error("Error al enviar los datos:", error);
+      .then(response => {
+        console.log("Datos enviados correctamente: ", response);
+      })
+      .catch(error => {
+        console.error("Error al enviar los datos:", error);
     });
+  }
 });
+

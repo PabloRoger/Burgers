@@ -165,14 +165,14 @@ const updateBurger = (req, res) => {
 
 // function to delete a burger
 const deleteBurger = (req, res) => {
-  const burger_id = req.params.id;
+  const {id} = req.params;
 
-  if (!burger_id) {
+  if (!id) {
     res.status(400).send("Missing required information");
     return;
   }
 
-  const deletedBurger = burgersService.deleteBurger(burger_id, (error, result) => {
+  const deletedBurger = burgersService.deleteBurger(id, (error, result) => {
     if (error) {
       res.status(500).send({ error: error.message })
       return;

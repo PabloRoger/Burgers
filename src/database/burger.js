@@ -4,7 +4,11 @@ function getAllBurgers(callback) {
   const query = 'SELECT * FROM Burger';
 
   connection.query(query, (error, results) => {
-    // MANAGE ERROR
+    /**
+     * callback is a function that will be executed when the query is finished
+     * the first parameter is the error, the second is the result
+     * it is used to manage the error and the result of the query
+     */
     error ? callback(error, null) : callback(null, results);
   });
 }
@@ -63,15 +67,26 @@ function updateBurger(burgerId, changes, callback) {
   });
 }
 
-function deleteBurger(burgerId, callback) {
-  const query = 'DELETE FROM Burger WHERE burger_id = ?';
+const deleteBurger = (burgerId, callback) => {
+  const deleteRankingQuery = 'DELETE FROM ranking WHERE burger_id = ?';
+  const deleteBurgerQuery = 'DELETE FROM burger WHERE burger_id = ?';
 
+  connection.query(deleteRankingQuery, burgerId, (error, result) => {
+    if (error) {
+      callback(error, null);
+      return;
+    }
 
-  connection.query(query, burgerId, (error, result) => {
-    // MANAGE ERROR
-    error ? callback(error, null) : callback(null, result);
+    connection.query(deleteBurgerQuery, burgerId, (error, result) => {
+      if (error) {
+        callback(error, null);
+        return;
+      }
+    });
   });
 };
+
+
 
 module.exports = {
   getAllBurgers,

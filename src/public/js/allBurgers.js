@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               const burgerAuthor = document.createElement("p");
               burgerAuthor.classList.add("card-text");
-              burgerAuthor.textContent = `Author: ${author.username}`;
+              burgerAuthor.textContent = `Autor: ${author.username}`;
 
               burgerCardBody.appendChild(burgerTitle);
               burgerCardBody.appendChild(burgerAuthor);

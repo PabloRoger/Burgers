@@ -51,8 +51,6 @@ const authenticateUser = (req, res) => {
 };
 
 
-
-
 const registerUser = (req, res) => {
   const { body } = req;
 
@@ -105,14 +103,11 @@ const updateUser = (req, res) => {
           return;
         }
 
-        res.send(result);
+        res.send({ redirect: `/profile/${user_id}` });
       });
     });
   });
 };
-
-
-
 
 
 const deleteUser = (req, res) => {
