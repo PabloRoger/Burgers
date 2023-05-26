@@ -10,7 +10,6 @@ const publicPath = path.join(__dirname, "./public");
 const cors = require("cors");
 
 const session = require('express-session');
-const { title } = require("process");
 
 app.use(session({
     secret: 'my-secret-key',
@@ -72,10 +71,10 @@ app.get("/ranking", (req, res) => {
 
 // pagina de crear hamburguesa solo para usuarios logueados
 app.get("/crear", (req, res) => {
-    // if (!req.session.user) {
-    //     res.redirect("/login");
-    //     return;
-    // }
+    if (!req.session.user) {
+        res.redirect("/login");
+        return;
+    }
     res.render("crear", {
         session: req.session,
         title: "Crear"

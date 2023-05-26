@@ -10,8 +10,13 @@ const storage = multer.diskStorage({
         cb(null, path.join(__dirname, '../../public/img/user_burger/'));
     },
     filename: function(req, file, cb) {
-        const burgerId = req.params.id;
-        cb(null, `burger_${burgerId}${path.extname(file.originalname)}`);
+        // Obtén el valor actual de index almacenado en el objeto req
+        let index = req.index || 0;
+        index++;
+        // Actualiza el valor de index en el objeto req
+        req.index = index;
+        // Genera el nombre del archivo con el valor actualizado de index
+        cb(null, `burger_${index}${path.extname(file.originalname)}`);
     }
 });
 

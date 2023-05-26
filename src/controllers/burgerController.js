@@ -82,7 +82,9 @@ const createBurger = (req, res) => {
     !body.vegetable_type ||
     !body.toppings_type ||
     !body.description ||
-    !uploadedPicture
+    !uploadedPicture ||
+    !body.time_to_prepare ||
+    !body.difficulty
     ){
     res.status(400).send("Missing required information");
     return;
@@ -98,7 +100,9 @@ const createBurger = (req, res) => {
     vegetable_type: body.vegetable_type,
     toppings_type: body.toppings_type,
     description: body.description,
-    picture: uploadedPicture
+    picture: uploadedPicture,
+    time_to_prepare: body.time_to_prepare,
+    difficulty: body.difficulty
   };
 
   const createdBurger = burgersService.createBurger(newBurger, (error, result) => {
@@ -107,7 +111,7 @@ const createBurger = (req, res) => {
       return;
     }
 
-    res.send(result);
+    res.send({ redirectURL: `/burger/${result.insertId}` });
   });
 
   return createdBurger;

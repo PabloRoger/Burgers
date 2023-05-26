@@ -113,6 +113,8 @@ window.addEventListener('submit', (event) => {
     return ingredient_type;
   }
 
+  const user_id = document.getElementById('user_id').href.split('/')[4];
+
   const burger_name = document.getElementById('burger-name').value;
 
   const bread_type = selectIngredient('bread');
@@ -124,23 +126,36 @@ window.addEventListener('submit', (event) => {
 
   const description = document.getElementById('description').value;
   const picture = document.getElementById('picture').files[0];
-  const time_to_prepare = document.getElementById('time-to-prepare').value;
+  const time_to_prepare = parseInt(document.getElementById('time-to-prepare').value);
   const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
 
-  let burger = {
-    burger_name : burger_name,
-    bread_type : bread_type,
-    meat_type : meat_type,
-    cheese_type : cheese_type,
-    sauce_type : sauce_type,
-    vegetable_type : vegetable_type,
-    toppings_type : toppings_type,
-    description : description,
-    picture : picture, // AÑADIR
-    time_to_prepare : time_to_prepare,
-    difficulty : difficulty,
-  }
+  let burger = new FormData();
+burger.append('user_id', user_id);
+burger.append('burger_name', burger_name);
+burger.append('bread_type', bread_type);
+burger.append('meat_type', meat_type);
+burger.append('cheese_type', cheese_type);
+burger.append('sauce_type', sauce_type);
+burger.append('vegetable_type', vegetable_type);
+burger.append('toppings_type', toppings_type);
+burger.append('description', description);
+burger.append('picture', picture);
+burger.append('time_to_prepare', time_to_prepare);
+burger.append('difficulty', difficulty);
 
-  console.log(burger);
+fetch('/api/v1/create', {
+  method: 'POST',
+  body: burger
+})
+  .then(response => {
+    console.log("Datos enviados correctamente", response);
+    return response.json(); // Parsear la respuesta como JSON
+  })
+  .then(data => {
+    if (data.redirectURL) {
+      window.location.href = data.redirectURL;
+    }
+  })
+  .catch(error => console.log(error));
 
 });
