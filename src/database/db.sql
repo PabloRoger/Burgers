@@ -92,8 +92,8 @@ INSERT INTO Ingredients (ingredient_name, ingredient_type) VALUES
 
 INSERT INTO User (username, email, picture, password)
 VALUES
-('admin', 'admin@gmail.com', 'profile_1.jpg','123'),
-('pablo', 'pablo@gmail.com', 'profile_2.jpg','$2a$08$7O2KIy34D3PDl85emvHZtOdc658BpISxM3OBKpffjwceAJhloS1om');
+('admin', 'admin@gmail.com', 'user.png','123'),
+('pablo', 'pablo@gmail.com', 'user.png','$2a$08$7O2KIy34D3PDl85emvHZtOdc658BpISxM3OBKpffjwceAJhloS1om');
 -- COMMENT password encrypted is: 123
 
 
@@ -214,9 +214,29 @@ VALUES
 (1, 'Clásica', 'Pan normal', 'Vaca', 'Cheddar', 'Ketchup, Mostaza', 'Cebolla', 'Bacon', 'La hamburguesa más clásica de todas, para los amantes de los sabores tradicionales', 'test_01.jpg', 10, 1),
 (1, 'Mexicana', 'Pan integral', 'Cerdo', 'Gouda', 'Mayonesa', 'Lechuga, Tomate, Cebolla', 'Bacon', 'Una hamburguesa picante con un toque mexicano', 'test_02.jpg', 15, 2),
 (2, 'Vegetal', 'Pan brioche', 'Pollo', 'Queso azul', 'Mostaza', 'Tomate, Cebolla', 'Huevo', 'Para los vegetarianos, una opción deliciosa y saludable', 'test_03.jpg', 8, 3),
-(2, 'Marrana', 'Pan normal', 'Cerdo', 'Gouda', 'Barbacoa', '', '', 'Para ver el futbol', 'test_04.jpg', 10, 1);
+(2, 'Marrana', 'Pan normal', 'Cerdo', 'Gouda', 'Barbacoa', '', '', 'Para ver el futbol', 'test_04.jpg', 10, 1),
+(1, 'Hawaiana', 'Pan normal', 'Pollo', 'Queso azul', 'Mayonesa', 'Lechuga, Tomate', 'Pepinillos', 'Una deliciosa hamburguesa con un toque tropical', 'test_05.jpg', 12, 2),
+(1, 'Doble queso', 'Pan brioche', 'Vaca', 'Cheddar', 'Mostaza', 'Cebolla crujiente', '', 'Una hamburguesa con doble porción de queso', 'test_06.jpg', 15, 2),
+(2, 'Barbacoa picante', 'Pan normal', 'Cerdo', 'Gouda', 'Barbacoa, Mostaza', 'Cebolla, Tomate', 'Bacon', 'Una hamburguesa con un toque picante y sabroso', 'test_07.jpg', 13, 2),
+(2, 'Vegetariana mediterránea', 'Pan integral', 'Pollo', 'Queso azul', 'Mostaza', 'Lechuga, Tomate, Cebolla', 'Pepinillos', 'Una hamburguesa vegetariana con influencias mediterráneas', 'test_08.jpg', 10, 1),
+(1, 'Burger clásica con huevo', 'Pan normal', 'Vaca', 'Cheddar', 'Ketchup, Mayonesa', 'Cebolla, Lechuga', 'Huevo', 'La hamburguesa clásica con un toque especial de huevo', 'test_09.jpg', 11, 1),
+(1, 'Parrillera', 'Pan integral', 'Cerdo', 'Gouda', 'Barbacoa, Ketchup', 'Cebolla crujiente, Tomate', 'Bacon', 'Una hamburguesa con un sabor a la parrilla', 'test_10.jpg', 14, 3),
+(2, 'Pollo cajún', 'Pan brioche', 'Pollo', 'Queso azul', 'Mayonesa, Mostaza', 'Lechuga, Cebolla', 'Pepinillos', 'Una hamburguesa de pollo con especias cajún', 'test_11.jpg', 12, 2),
+(2, 'Burger de cerdo', 'Pan normal', 'Cerdo', 'Gouda', 'Ketchup, Mayonesa', 'Cebolla, Tomate', 'Bacon', 'Una hamburguesa sabrosa a base de carne de cerdo', 'test_12.jpg', 10, 1),
+(1, 'Española', 'Pan integral', 'Vaca', 'Cheddar', 'Mayonesa, Mostaza', 'Cebolla crujiente, Tomate', '', 'Una hamburguesa con sabores tradicionales españoles', 'test_13.jpg', 15, 3),
+(1, 'Pollo mediterráneo', 'Pan normal', 'Pollo', 'Queso azul', 'Mostaza', 'Lechuga, Tomate, Cebolla', 'Pepinillos', 'Una hamburguesa de pollo con un toque mediterráneo', 'test_14.jpg', 12, 2);
 
 -- BURGERS RANKING FOR TESTING
 INSERT INTO Ranking (user_id, burger_id, rating)
 VALUES
-(1, 10, 5),(1, 11, 4),(1, 12, 10), (1, 13, 25);
+(1, 10, 85),
+(1, 11, 45),
+(1, 12, 10),
+(1, 13, 25),
+(1, 14, 28),
+(1, 15, 27),
+(1, 16, 61),
+(1, 17, 59),
+(1, 18, 73),
+(1, 19, 93),
+(1, 20, 72);

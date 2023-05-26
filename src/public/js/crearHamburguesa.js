@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove the select
         const selectToRemove = event.target.parentElement.querySelector('select');
         selectToRemove.parentElement.remove();
+
+        // counter is decremented
         counter--;
+
+        // The add button is displayed again
         addButton.style.display = 'block';
       } else {
         if (counter < 1) {
@@ -29,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
            */
           const ingredientList = document.getElementById(ingredientType.id);
           const newSelect = document.createElement('select');
+
           newSelect.classList.add('form-control');
           newSelect.setAttribute('id', ingredientType.type.toLowerCase());
 
@@ -46,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
               ingredients.forEach(ingredient => {
                 const option = document.createElement('option');
+
                 option.innerHTML = ingredient.ingredient_name;
                 option.setAttribute('value', `${ingredient.ingredient_type.toLowerCase()}-${ingredient.ingredient_name.toLowerCase()}`);
+
                 newSelect.appendChild(option);
               });
               newSelect.insertBefore(defaultOption, newSelect.firstChild);
@@ -88,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+
+    // select options from bread
+    const breadSelect = document.getElementById('bread');
+    const breadImage = document.getElementById('bread-image');
+
+    breadSelect.addEventListener('change', (event) => {
+      const breadValue = event.target.value;
+      breadImage.src = `/img/create_burger/${breadValue}.png`;
+    });
+
+    // Select the ingredient type
     const ingredientSelect = document.getElementById(ingredientType.type.toLowerCase());
     const ingredientImage = document.getElementById(`${ingredientType.imageId}`);
     const prevImageOffset = imageOffset - 100;
@@ -103,6 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+const containSeleccionaWord = (string) => {
+  const seleccionaWord = 'Selecciona';
+  if (string.includes(seleccionaWord)) {
+    string = '';
+  }
+  return string;
+}
+
+
 window.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -112,17 +139,25 @@ window.addEventListener('submit', (event) => {
     const ingredient_type = selectedOption.textContent;
     return ingredient_type;
   }
-
+  // Get the user id from the user profile link in the navbar
   const user_id = document.getElementById('user_id').href.split('/')[4];
 
   const burger_name = document.getElementById('burger-name').value;
 
   const bread_type = selectIngredient('bread');
   const meat_type = selectIngredient('meat');
+
   const cheese_type = selectIngredient('cheese');
+  const cheese_type_checked = containSeleccionaWord(cheese_type);
+
   const sauce_type = selectIngredient('sauce');
+  const sauce_type_checked = containSeleccionaWord(sauce_type);
+
   const vegetable_type = selectIngredient('vegetable');
+  const vegetable_type_checked = containSeleccionaWord(vegetable_type);
+
   const toppings_type = selectIngredient('topping');
+  const toppings_type_checked = containSeleccionaWord(toppings_type);
 
   const description = document.getElementById('description').value;
   const picture = document.getElementById('picture').files[0];
@@ -130,32 +165,32 @@ window.addEventListener('submit', (event) => {
   const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
 
   let burger = new FormData();
-burger.append('user_id', user_id);
-burger.append('burger_name', burger_name);
-burger.append('bread_type', bread_type);
-burger.append('meat_type', meat_type);
-burger.append('cheese_type', cheese_type);
-burger.append('sauce_type', sauce_type);
-burger.append('vegetable_type', vegetable_type);
-burger.append('toppings_type', toppings_type);
-burger.append('description', description);
-burger.append('picture', picture);
-burger.append('time_to_prepare', time_to_prepare);
-burger.append('difficulty', difficulty);
+  burger.append('user_id', user_id);
+  burger.append('burger_name', burger_name);
+  burger.append('bread_type', bread_type);
+  burger.append('meat_type', meat_type);
+  burger.append('cheese_type', cheese_type_checked);
+  burger.append('sauce_type', sauce_type_checked);
+  burger.append('vegetable_type', vegetable_type_checked);
+  burger.append('toppings_type', toppings_type_checked);
+  burger.append('description', description);
+  burger.append('picture', picture);
+  burger.append('time_to_prepare', time_to_prepare);
+  burger.append('difficulty', difficulty);
 
-fetch('/api/v1/create', {
-  method: 'POST',
-  body: burger
-})
-  .then(response => {
-    console.log("Datos enviados correctamente", response);
-    return response.json(); // Parsear la respuesta como JSON
-  })
-  .then(data => {
-    if (data.redirectURL) {
-      window.location.href = data.redirectURL;
-    }
-  })
-  .catch(error => console.log(error));
 
+  fetch('/api/v1/create', {
+    method: 'POST',
+    body: burger
+  })
+    .then(response => {
+      console.log("Datos enviados correctamente", response);
+      return response.json();
+    })
+    .then(data => {
+      if (data.redirectURL) {
+        window.location.href = data.redirectURL;
+      }
+    })
+    .catch(error => console.log(error));
 });

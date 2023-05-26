@@ -7,9 +7,10 @@
     </li>
     <li class="item"><a href="/crear">Crear</a></li>
     <li class="item"><a href="/ranking">Ranking</a></li>
-    <li class="item"><a href="/quienes-somos">Burgers</a></li>
-    <li class="item"><a href="/contacto">Contacto</a></li>
+    <li class="item"><a href="/burgers">Burgers</a></li>
+    <li class="item"><a href="/quienes-somos">Empresa</a></li>
     </li>
+    {{!-- Conditions built-in of handlebars --}}
     {{#if session.user}}
         <li class="item button"><a id="user_id" href='/profile/{{session.user.user_id}}'>{{session.user.username}}</a></li>
         <li class="item button secondary"><a href="/logout">Cerrar sesión</a></li>

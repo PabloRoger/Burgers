@@ -69,7 +69,6 @@ app.get("/ranking", (req, res) => {
     });
 });
 
-// pagina de crear hamburguesa solo para usuarios logueados
 app.get("/crear", (req, res) => {
     if (!req.session.user) {
         res.redirect("/login");
@@ -81,7 +80,6 @@ app.get("/crear", (req, res) => {
     });
 
 });
-
 
 app.get("/register", (req, res) => {
     res.render("auth/register", {
@@ -128,6 +126,13 @@ app.get("/burger/:id", (req, res) => {
         title: "Burger"
     });
 });
+
+app.get("/burgers", (req, res) => {
+    res.render("allBurgers", {
+        session: req.session,
+        title: "Burgers"
+    });
+})
 
 // Start the server
 app.listen(PORT, () => {
