@@ -109,9 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const allIngredients = [];
     const ingredientTypes = ['bread', 'sauce', 'meat', 'cheese', 'toppings', 'vegetable'];
 
+    // Get all ingredients from the burger filtering by ingredient type
     ingredientTypes.forEach((ingredientType) => {
       const ingredients = burger[`${ingredientType}_type`].split(',');
 
+      // If the burger has ingredients, add them to the array
       if(ingredients[0] !== '') {
         ingredients.forEach((ingredient) => {
           let ingredientName = removeSpaces(ingredient);

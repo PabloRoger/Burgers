@@ -37,7 +37,8 @@ const authenticateUser = (req, res) => {
 
   authService.authenticateUser(username, password, (error, result) => {
     if (error) {
-      res.status(500).send({ error: error.message });
+      const errorMessage = encodeURIComponent(error.message);
+      res.redirect(`/login?error=${errorMessage}`);
       return;
     }
     req.session.user = {
@@ -50,6 +51,8 @@ const authenticateUser = (req, res) => {
 };
 
 
+
+
 const registerUser = (req, res) => {
   const { body } = req;
 
@@ -60,7 +63,8 @@ const registerUser = (req, res) => {
 
   const createdUser = authService.registerUser(body, (error, result) => {
     if (error) {
-      res.status(500).send({ error: error.message })
+      res.status(500).send({ redirect: "/register", error: error.message })
+
       return;
     }
 

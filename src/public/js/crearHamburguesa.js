@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-
     // select options from bread
     const breadSelect = document.getElementById('bread');
     const breadImage = document.getElementById('bread-image');
@@ -164,6 +163,7 @@ window.addEventListener('submit', (event) => {
   const time_to_prepare = parseInt(document.getElementById('time-to-prepare').value);
   const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
 
+  // Formdata because we are sending a file
   let burger = new FormData();
   burger.append('user_id', user_id);
   burger.append('burger_name', burger_name);
@@ -192,5 +192,5 @@ window.addEventListener('submit', (event) => {
         window.location.href = data.redirectURL;
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(`Cuidado con los tipos de archivos subidos o campos sin rellenar: ${error}`));
 });

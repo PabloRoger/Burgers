@@ -28,7 +28,7 @@ function authenticateUser(username, password, callback) {
     }
 
     if (result.length === 0) {
-      callback({ message: "User not found" }, null);
+      callback({ message: "Usuario no encontrado" }, null);
       return;
     }
 
@@ -37,7 +37,7 @@ function authenticateUser(username, password, callback) {
     let isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      callback({ message: "Incorrect password" }, null);
+      callback({ message: "Contraseña incorrecta" }, null);
       return;
     }
 

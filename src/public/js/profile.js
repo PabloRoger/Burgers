@@ -123,9 +123,6 @@ function showUserBurgers(USER_ID) {
   })
   .catch(error => console.error("Error al obtener la lista de hamburguesas:", error));
 
-
-
-
 }
 
 
