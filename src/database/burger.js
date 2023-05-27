@@ -68,9 +68,11 @@ function updateBurger(burgerId, changes, callback) {
 }
 
 const deleteBurger = (burgerId, callback) => {
+  // Query to delete the burger from the ranking table and the burger table
   const deleteRankingQuery = 'DELETE FROM ranking WHERE burger_id = ?';
   const deleteBurgerQuery = 'DELETE FROM burger WHERE burger_id = ?';
 
+  // Execute the queries
   connection.query(deleteRankingQuery, burgerId, (error, result) => {
     if (error) {
       callback(error, null);

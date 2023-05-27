@@ -1,9 +1,9 @@
-// Obtener el mensaje de error de la URL de redirección
+// get the error message from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const error = urlParams.get('error');
 
 if (error) {
-  // Mostrar el mensaje de error en la página
+  // display the error message
   const errorMessage = document.getElementById('errorMessage');
   errorMessage.textContent = error;
 }

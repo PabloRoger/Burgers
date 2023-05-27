@@ -19,8 +19,9 @@ const getAllBurgers = (req, res) => {
 const getBurgerById = (req, res) => {
   const { id } = req.params;
 
+  // if there is no id, send an error
   if(!id){
-    res.status(400).send("Missing required information");
+    res.status(400).send("No se encontró el id del usuario");
     return;
   }
 
@@ -41,8 +42,9 @@ const getBurgerById = (req, res) => {
 const getBurgersByUserId = (req, res) => {
   const { id } = req.params;
 
+  // if there is no id, send an error
   if(!id){
-    res.status(400).send("Missing required information");
+    res.status(400).send("No se encontró el id del usuario");
     return;
   }
 
@@ -94,6 +96,7 @@ const createBurger = (req, res) => {
   const { body } = req;
   const uploadedPicture = req.file ? req.file.filename : null;
 
+  // Check if the required fields are present
   if(
     !body.user_id ||
     !body.burger_name ||
@@ -108,10 +111,11 @@ const createBurger = (req, res) => {
     !body.time_to_prepare ||
     !body.difficulty
     ){
-    res.status(400).send("Missing required information");
+    res.status(400).send("No se encontró la información necesaria");
     return;
   }
 
+  // Create the new burger object
   const newBurger = {
     user_id: body.user_id,
     burger_name: body.burger_name,
@@ -145,8 +149,9 @@ const updateBurger = (req, res) => {
   const { body } = req;
   const burger_id = req.params.id;
 
+  // Check if the required fields are present
   if( !burger_id ){
-    res.status(400).send("Missing required information");
+    res.status(400).send("No se encontró el id del usuario");
     return;
   }
 
@@ -167,8 +172,9 @@ const updateBurger = (req, res) => {
 const deleteBurger = (req, res) => {
   const {id} = req.params;
 
+  // if there is no id, send an error
   if (!id) {
-    res.status(400).send("Missing required information");
+    res.status(400).send("No se encontró el id del usuario");
     return;
   }
 

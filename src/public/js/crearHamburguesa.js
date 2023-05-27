@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // object to store the ingredients
   const ingredientTypes = [
     { type: 'Topping', id: 'topping-list', imageId: 'topping-image' },
     { type: 'Cheese', id: 'cheese-list', imageId: 'cheese-image' },
@@ -9,13 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let imageOffset = 220; // Variable for the vertical offset of the images
 
+  // forEach to add the event listener to the buttons
   ingredientTypes.forEach(ingredientType => {
+    // e.g addButton = document.getElementById('add-topping')
     const addButton = document.getElementById(`add-${ingredientType.type.toLowerCase()}`);
     let counter = 0;
 
     addButton.addEventListener('click', (event) => {
+      // no page reload
       event.preventDefault();
 
+      /**
+       * if the button contains remove-ingredient class it means that the user wants to remove the ingredient
+       * so the counter is decremented and the add button is displayed again
+       */
       if (event.target.classList.contains('remove-ingredient')) {
         // Remove the select
         const selectToRemove = event.target.parentElement.querySelector('select');
@@ -47,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
           fetch('/api/v1/ingredients')
             .then(response => response.json())
             .then(data => {
+              // Filter the ingredients by type
               const ingredients = data.filter(ingredient => ingredient.ingredient_type === ingredientType.type);
 
               ingredients.forEach(ingredient => {
@@ -79,10 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Add the select and the remove button to the div
           newFormGroup.appendChild(removeButton);
+          // Add a space between the remove button and the select
           newFormGroup.appendChild(document.createTextNode(' '));
+          // Add the select to the div
           newFormGroup.appendChild(newSelect);
+          // Add the div to the ingredient list
           newFormGroup.appendChild(defaultOption);
 
+          // Add the div to the ingredient list before the add button
           ingredientList.insertBefore(newFormGroup, addButton);
           newSelect.appendChild(defaultOption);
 
@@ -99,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const breadSelect = document.getElementById('bread');
     const breadImage = document.getElementById('bread-image');
 
+    // Add the event listener to the bread select to change the image
     breadSelect.addEventListener('change', (event) => {
       const breadValue = event.target.value;
       breadImage.src = `/img/create_burger/${breadValue}.png`;
@@ -120,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// if the string contains the word 'Selecciona' it is removed
 const containSeleccionaWord = (string) => {
   const seleccionaWord = 'Selecciona';
   if (string.includes(seleccionaWord)) {
@@ -128,7 +143,7 @@ const containSeleccionaWord = (string) => {
   return string;
 }
 
-
+// when the user submits the form the burger is created and added to the database
 window.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -141,6 +156,7 @@ window.addEventListener('submit', (event) => {
   // Get the user id from the user profile link in the navbar
   const user_id = document.getElementById('user_id').href.split('/')[4];
 
+  // SET THE VALUES OF THE FORM
   const burger_name = document.getElementById('burger-name').value;
 
   const bread_type = selectIngredient('bread');
@@ -163,7 +179,10 @@ window.addEventListener('submit', (event) => {
   const time_to_prepare = parseInt(document.getElementById('time-to-prepare').value);
   const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
 
-  // Formdata because we are sending a file
+  /**
+   * Create a new FormData object
+   * needs to be sent as a multipart/form-data
+   */
   let burger = new FormData();
   burger.append('user_id', user_id);
   burger.append('burger_name', burger_name);
@@ -188,6 +207,10 @@ window.addEventListener('submit', (event) => {
       return response.json();
     })
     .then(data => {
+      /**
+       * If the burger is created successfully redirect to the burger page
+       * redirectURL is sent from the server
+       */
       if (data.redirectURL) {
         window.location.href = data.redirectURL;
       }

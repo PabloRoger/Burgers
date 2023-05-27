@@ -61,9 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
           .then((burgerDetails) => {
             let filteredBurgers = burgerDetails;
 
-            if (difficulty !== '') { filteredBurgers = filterByDifficulty(filteredBurgers, difficulty); }
-            if (numIngredients !== '') { filteredBurgers = filterByNumIngredients(filteredBurgers, numIngredients); }
-            if (selectedIngredients.length > 0) { filteredBurgers = filterByIngredients(filteredBurgers, selectedIngredients); }
+            // if difficulty is not empty, filter by difficulty
+            if (difficulty !== '')  filteredBurgers = filterByDifficulty(filteredBurgers, difficulty);
+            // if numIngredients is not empty, filter by numIngredients
+            if (numIngredients !== '') filteredBurgers = filterByNumIngredients(filteredBurgers, numIngredients);
+            // if selectedIngredients is not empty, filter by selectedIngredients
+            if (selectedIngredients.length > 0) filteredBurgers = filterByIngredients(filteredBurgers, selectedIngredients);
 
             renderTable(filteredBurgers);
           })
@@ -99,8 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function filterByIngredients(burgers, selectedIngredients) {
+    // This filter is not necessary if the selectedIngredients is not selected
     return burgers.filter((burger) => {
+      // Get all ingredients from the burger
       const ingredients = getAllIngredients(burger);
+      // Return true if the selectedIngredients is included in the ingredients array
       return ingredients.includes(selectedIngredients);
     });
   }

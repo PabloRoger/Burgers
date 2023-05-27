@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Obtener la lista de hamburguesas de la web y mostrarlas
+  // get all the burgers
   fetch("/api/v1/burgers")
     .then(response => response.json())
     .then(data => {
       const burgersList = document.getElementById("burgersList");
-      burgersList.innerHTML = ""; // Limpiar el contenido existente
+      burgersList.innerHTML = ""; // Clear the list
 
       if (data.length > 0) {
-        // Eliminar las primeras 9 hamburguesas
+        // Remove the first 9 burgers (they are from restaurants)
         const filteredData = data.slice(9);
 
         const row = document.createElement("div");
         row.classList.add("row");
 
         filteredData.forEach(burger => {
-          // Obtener la información del autor de la hamburguesa
+          // get the author of the burger
           fetch(`/api/v1/auth/user/${burger.user_id}`)
             .then(response => response.json())
             .then(author => {
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         burgersList.appendChild(row);
       } else {
-        // Mostrar un mensaje si no hay hamburguesas
+        // display a message if there are no burgers
         burgersList.textContent = "No se encontraron hamburguesas disponibles.";
       }
     })

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // get the user ID from the URL
   const URL = window.location.pathname;
   const USER_ID = URL.split("/").pop();
 
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let uploadOption = document.getElementById("upload-option");
 
+      // if the user has a profile picture, show it
       if (user.picture) {
         uploadOption.innerHTML = `
           <img src="/img/user_profile/${user.picture}" alt="profile picture" class="profile-picture">
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById("user-email").value = user.email;
     });
 
-  // Manejar eventos de clic en las pestañas
+  // handle the tabs
   const profileTab = document.getElementById("profile-tab");
   const burgersTab = document.getElementById("burgers-tab");
 
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// handle the form to show the user's profile
 function showUserProfile() {
   const profileTab = document.getElementById("profile-tab");
   const burgersTab = document.getElementById("burgers-tab");
@@ -56,6 +59,7 @@ function showUserProfile() {
   burgersContent.classList.remove("show", "active");
 }
 
+// handle the form to show the user's burgers
 function showUserBurgers(USER_ID) {
   const profileTab = document.getElementById("profile-tab");
   const burgersTab = document.getElementById("burgers-tab");
@@ -67,17 +71,18 @@ function showUserBurgers(USER_ID) {
   profileContent.classList.remove("show", "active");
   burgersContent.classList.add("show", "active");
 
-  // Obtener la lista de hamburguesas del usuario y mostrarlas
+  // get the user's burgers
   fetch(`/api/v1/burger/user/${USER_ID}`)
   .then(response => response.json())
   .then(data => {
     const burgersList = document.getElementById("burgersList");
-    burgersList.innerHTML = ""; // Limpiar el contenido existente
+    burgersList.innerHTML = ""; // clear the list
 
     if (data.length > 0) {
       const row = document.createElement("div");
       row.classList.add("row");
 
+      // create a card for each burger
       data.forEach(burger => {
         const column = document.createElement("div");
         column.classList.add("col-sm-4", "mb-4");
@@ -123,7 +128,7 @@ function showUserBurgers(USER_ID) {
 
       burgersList.appendChild(row);
     } else {
-      // Mostrar un mensaje si no hay hamburguesas
+      // display a message if the user has no burgers
       burgersList.textContent = "No se encontraron hamburguesas creadas.";
     }
   })
@@ -135,13 +140,13 @@ function removeButton (id) {
   const URL = window.location.pathname;
   const USER_ID = URL.split("/").pop();
 
+  // ask the user if they are sure they want to delete the burger
   if (confirm("¿Estás seguro de que quieres eliminar esta hamburguesa?")) {
     fetch(`/api/v1/delete/${id}`, {
       method: "DELETE"
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.success);
       if (data.status === 200) {
         window.location.href = `/user/${USER_ID}`;
         showUserBurgers(USER_ID);
@@ -180,7 +185,6 @@ form.addEventListener("submit", function(event) {
     })
       .then(response => {
         if(response.status === 200) {
-        console.log("Datos enviados correctamente: ", response);
         alert("Datos actualizados correctamente");
         } else {
           alert("Error al actualizar los datos");

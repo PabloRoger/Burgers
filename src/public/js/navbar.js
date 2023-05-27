@@ -1,3 +1,5 @@
+// JQUERY FOR NAVBAR
+// FOUND ON INTERNET
 $(function() {
   $(".toggle").on("click", function() {
       if ($(".item").hasClass("active")) {

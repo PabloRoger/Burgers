@@ -2,25 +2,31 @@ const express = require("express");
 const router = express.Router();
 const burgersController = require("../../controllers/burgerController");
 
+// multer is a middleware for handling multipart/form-data, which is primarily used for uploading files
 const multer = require('multer');
+// path is a module for working with file paths
 const path = require('path');
 
 // Variable externa para almacenar el valor de index
 let index = 0;
 
+// multer.diskStorage() creates a storage space for storing files in the server
 const storage = multer.diskStorage({
+  // destination is a function that specifies the folder where the files will be stored
   destination: function(req, file, cb) {
     cb(null, path.join(__dirname, '../../public/img/user_burger/'));
   },
+  // filename is a function that renames the file
   filename: function(req, file, cb) {
     index++;
     cb(null, `burger_${index}${path.extname(file.originalname)}`);
   }
 });
 
-
+// upload handles the upload process
 const upload = multer({
     storage: storage,
+    // fileSize requires a number in bytes (1MB = 1024 * 1024 bytes)
     limits: { fileSize: 5 * 1024 * 1024 },  // 5MB
     fileFilter: function (req, file, cb) {
         const filetypes = /jpeg|jpg/;
@@ -49,4 +55,9 @@ router
     .patch("/update/:id", burgersController.updateBurger)
     .delete("/delete/:id", burgersController.deleteBurger);
 
+  /**
+   * upload.single('picture') is a middleware that handles the upload process
+   * single() means that only one file will be uploaded
+   * 'picture' is the name of the input field in the form
+   */
 module.exports = router;
