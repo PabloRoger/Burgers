@@ -142,7 +142,8 @@ function removeButton (id) {
     .then(response => response.json())
     .then(data => {
       console.log(data.success);
-      if (data.success) {
+      if (data.status === 200) {
+        window.location.href = `/user/${USER_ID}`;
         showUserBurgers(USER_ID);
       }
     })
@@ -178,7 +179,12 @@ form.addEventListener("submit", function(event) {
       body: formData
     })
       .then(response => {
+        if(response.status === 200) {
         console.log("Datos enviados correctamente: ", response);
+        alert("Datos actualizados correctamente");
+        } else {
+          alert("Error al actualizar los datos");
+        }
       })
       .catch(error => {
         console.error("Error al enviar los datos:", error);
